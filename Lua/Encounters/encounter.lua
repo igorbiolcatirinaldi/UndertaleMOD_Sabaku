@@ -5,7 +5,7 @@ encountertext = "Sabaku STOPS YOU!" --Modify as necessary. It will only be read 
 nextwaves = {"logoarena"} -- first attack
 wavetimer = 0.0 --12 for ping pong
 arenasize = {155, 130}
-indexAttack = -1
+indexAttack = 0
 attacksPhase = 1
 attackCombo = false
 
@@ -35,6 +35,9 @@ function EncounterStarting()
 	--DEBUG("weapon atk" .. Player.weaponatk)
 	enemies[1].GetVar("parrySprite").Remove()
 	enemies[1].Call("BindToArena",false)
+	-- Add items
+	Inventory.AddCustomItems({"Cinnamon Pie","Hush Puppy","Snowman Piece","Hot Dog"},{0,0,0,0})
+	Inventory.SetInventory({"Cinnamon Pie","Hush Puppy","Snowman Piece","Hot Dog"})
 end
 
 function EnemyDialogueStarting()
@@ -95,11 +98,13 @@ function EnemyDialogueEnding()
 	end
 
 	
-	if nextwaves[1] == "logocombo_pingpongboomblast" then-- .. attacksPhase then
+	if nextwaves[1] == "logocombo_pingpongboomblast" || nextwaves[1] == "logocoin" .. attacksPhase
+		|| nextwaves[1] == "logocoinboom" .. attacksPhase || nextwaves[1] == "logoblast" .. attacksPhase then
 		arenasize = {120,80}
 		wavetimer = 8.0
 		--Misc.ResizeWindow(Misc.WindowWidth * 1.5,Misc.WindowHeight * 1.5)
 	elseif nextwaves[1] == "logopingpong" .. attacksPhase then
+		arenasize = {120,80}
 		wavetimer = 12.0
 	end
 end
@@ -139,4 +144,13 @@ end
 
 function HandleItem(ItemID)
     BattleDialog({"Selected item " .. ItemID .. "."})
+	if ItemID == "CINNAMON PIE" then
+		Player.Heal(100)
+	elseif ItemID == "HUSH PUPPY" then
+		Player.Heal(65)
+	elseif ItemID == "SNOWMAN PIECE" then
+		Player.Heal(45)
+	elseif ItemID == "HOT DOG" then
+		Player.Heal(20)
+	end
 end
