@@ -3,11 +3,16 @@
 music = "Im_your_last_hope" --Either OGG or WAV. Extension is added automatically. Uncomment for custom music.
 encountertext = "Sabaku STOPS YOU!" --Modify as necessary. It will only be read out in the action select screen.
 nextwaves = {"logoarena"} -- first attack
-wavetimer = 0.0 --12 for ping pong
+wavetimer = 10--0.0
 arenasize = {155, 130}
 indexAttack = 0
 attacksPhase = 1
 attackCombo = false
+flee = false
+
+stepphase1 = false
+stepphase2 = false
+stepphase3 = false
 
 autolinebreak = true
 
@@ -50,8 +55,8 @@ function EnemyDialogueStarting()
 			enemies[1].SetVar("currentdialogue", enemies[1].GetVar("dialogPreCOINattack"))
 		elseif indexAttack == 3 then
 			enemies[1].SetVar("currentdialogue", enemies[1].GetVar("dialogPrePINGPONGattack"))
-		else
-			enemies[1].SetVar("currentdialogue", enemies[1].GetVar("")) -- random?
+		--else
+			--enemies[1].SetVar("currentdialogue", enemies[1].GetVar("")) -- random?
 		end
 	elseif enemies[1].GetVar("battleSecondPhase") == true then
 		if attackCombo == false then
@@ -79,32 +84,31 @@ function EnemyDialogueEnding()
 		if indexAttack > 0 and indexAttack <= #attacks_phase1 then
 			nextwaves = {attacks_phase1[indexAttack] .. attacksPhase}
 		elseif indexAttack > #attacks_phase1 then
-			nextwaves = {attacks_phase1[math.random(attacks_phase1)] .. attacksPhase}
+			nextwaves = {attacks_phase1[math.random(#attacks_phase1)] .. attacksPhase}
 		end
 	elseif enemies[1].GetVar("battleSecondPhase") == true then
 		if attackCombo == false then
 			if indexAttack > 0 and indexAttack <= #attacks_phase2 then
 				nextwaves = {attacks_phase2[indexAttack] .. attacksPhase}
 			elseif indexAttack > #attacks_phase2 then
-				nextwaves = {attacks_phase2[math.random(attacks_phase2)] .. attacksPhase}
+				nextwaves = {attacks_phase2[math.random(#attacks_phase2)] .. attacksPhase}
 			end
 		else
 			if indexAttack > 0 and indexAttack <= #attacks_combo then
 				nextwaves = {attacks_combo[indexAttack]}
 			elseif indexAttack > #attacks_combo then
-				nextwaves = {attacks_combo[math.random(attacks_combo)]}
+				nextwaves = {attacks_combo[math.random(#attacks_combo)]}
 			end
 		end
 	end
-
 	
-	if nextwaves[1] == "logocombo_pingpongboomblast" || nextwaves[1] == "logocoin" .. attacksPhase
-		|| nextwaves[1] == "logocoinboom" .. attacksPhase || nextwaves[1] == "logoblast" .. attacksPhase then
+	if nextwaves[1] == "logocombo_pingpongboomblast" or nextwaves[1] == "logocoin" .. attacksPhase
+		or nextwaves[1] == "logocoinboom" .. attacksPhase or nextwaves[1] == "logoblast" .. attacksPhase then
 		arenasize = {120,80}
 		wavetimer = 8.0
 		--Misc.ResizeWindow(Misc.WindowWidth * 1.5,Misc.WindowHeight * 1.5)
-	elseif nextwaves[1] == "logopingpong" .. attacksPhase then
-		arenasize = {120,80}
+	elseif nextwaves[1] == "logopingpong" .. attacksPhase or nextwaves[1] == "lore" .. attacksPhase then
+		arenasize = {155, 130}
 		wavetimer = 12.0
 	end
 end
@@ -112,30 +116,37 @@ end
 
 function DefenseEnding() --This built-in function fires after the defense round ends.
 	if enemies[1].GetVar("battleFirstPhase") == true then
-		if enemies[1].GetVar("hp") <= 70 then
+		if enemies[1].GetVar("hp") <= 70 and stepphase1 == false then
 			enemies[1].SetVar("currentdialogue", enemies[1].GetVar("dialogChangePhase1AttackPhase12"))
 			attacksPhase = 2
+			stepphase1 = true
 			State("ENEMYDIALOGUE")
-		elseif enemies[1].GetVar("hp") <= 40 then
+		elseif enemies[1].GetVar("hp") <= 40 and stepphase2 == false then
 			enemies[1].SetVar("currentdialogue", enemies[1].GetVar("dialogChangePhase1AttackPhase23"))
 			attacksPhase = 3
+			stepphase2 = true
 			State("ENEMYDIALOGUE")
 		end
 	elseif enemies[1].GetVar("battleSecondPhase") == true then
-		if enemies[1].GetVar("hp") <= 75 then
+		if enemies[1].GetVar("hp") <= 75 and stepphase1 == false then
 			enemies[1].SetVar("currentdialogue", enemies[1].GetVar("dialogChangePhase2AttackPhase12"))
 			attacksPhase = 2
+			stepphase1 = true
 			State("ENEMYDIALOGUE")
-		elseif enemies[1].GetVar("hp") <= 50 then
+		elseif enemies[1].GetVar("hp") <= 50 and stepphase2 == false then
 			enemies[1].SetVar("currentdialogue", enemies[1].GetVar("dialogChangePhase2AttackPhase23"))
 			attacksPhase = 3
+			stepphase2 = true
 			State("ENEMYDIALOGUE")
-		elseif enemies[1].GetVar("hp") <= 25 then
+		elseif enemies[1].GetVar("hp") <= 25 and stepphase3 == false then
 			enemies[1].SetVar("currentdialogue", enemies[1].GetVar("dialogChangePhase2AttackPhase3combo"))
 			attackCombo = true
+			stepphase3 = true
 			State("ENEMYDIALOGUE")
 		end
 	end
+	
+	arenasize = {155, 130}
 end
 
 function HandleSpare()

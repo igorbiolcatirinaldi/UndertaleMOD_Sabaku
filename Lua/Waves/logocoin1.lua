@@ -3,7 +3,7 @@
 spawntimer = 0
 bullets = {}
 directions = {}
-bulletSpeed = 3
+bulletSpeed = 4
 playerResetPos = false
 sabakuLogo = CreateProjectile("SabakuLogoWSym", 0, Arena.height / 2 + 20)
 sabakuLogo.sprite.xscale = 0.35

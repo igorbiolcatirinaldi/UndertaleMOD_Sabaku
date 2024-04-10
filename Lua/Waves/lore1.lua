@@ -4,7 +4,9 @@ spawntimer = 0
 bullets = {}
 positionsX = {0, -Arena.width / 2, Arena.width / 2}
 bulletSpeedY = 2
-indeX = 1
+index = 1
+prevposition = 1
+position = 3
 
 function CreateBullet(x, y)
 	local bullet = CreateProjectile("LORE", x, y)
@@ -13,13 +15,18 @@ end
 
 function Update()
 	if spawntimer % 60 == 0 then
-		local xPos = positionsX[indeX]
+		local xPos = positionsX[index]
 		local yPos = Arena.height + 5
 		CreateBullet(xPos, yPos)
-		if indeX < 3 then
-			indeX = indeX + 1
+		if index < 3 then
+			index = index + 1
+			prevposition = index
 		else
-			indeX = math.random(1,#positionsX)
+			while prevposition == position do
+				position = math.random(1,#positionsX)
+			end
+			prevposition = position
+			index = position
 		end
 	end
 	

@@ -16,12 +16,12 @@ cancheck = true
 currentdialogue = {"Welcome back"}
 -- Intro
 countParryBeforeStartBattle = 0
-introPhase = true
+introPhase = false--true
 defensemisstext = "PARRY"
 parry = false
 parrySprite = CreateSprite("parry0","Top")
 -- Battle
-battleFirstPhase = false
+battleFirstPhase = true--false
 battleSecondPhase = false
 countAttacksFirstPhase = 0
 countAttacksHitSecondPhase = 0
@@ -175,6 +175,8 @@ function OnDeath()
 		battleSecondPhase = true
 		Encounter.SetVar("indexAttack",1)
 		Encounter.SetVar("attackPhase",1)
+		Encounter.SetVar("stepphase1",false)
+		Encounter.SetVar("stepphase2",false)
 		currentdialogue = {"....","You!!","You are stronger than me?!", "I should aspected that", "But..","..I didn't imagine this end..","[noskip]...[w:45][next]","..no..","NO![func:HopeMusic]","There is one last thing!","One last HOPE!","I will use the power of the 6 human souls", "Asgore forgive me but it's necessary","...","[func:FightRestart]","Here my ULTIMATE form","[func:State,ACTIONSELECT]"}
 		dialogbubble = "rightwide"
 		State("ENEMYDIALOGUE")
