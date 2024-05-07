@@ -3,7 +3,7 @@
 spawntimer = 0
 bullets = {}
 directions = {}
-bulletSpeed = 3
+bulletSpeed = 2.5
 playerResetPos = false
 offsetX = 20
 positionsX = {0, -Arena.width + offsetX, Arena.width - offsetX}

@@ -24,6 +24,7 @@ bulletR["vely"] = 3--math.random(1,3)
 
 function RandombulletOrientation(bullet)
 	bullet.sprite.rotation = math.random(10,80)
+	Audio.PlaySound("bounce",0.8)
 end
 function UpdatebulletDirectionMovement(bullet,left)
 	if left == true then
@@ -31,7 +32,7 @@ function UpdatebulletDirectionMovement(bullet,left)
 	else
 		bullet["velx"] = -1 * 6-- math.random(1,3)
 	end
-	bullet["vely"] = 3--math.random(1,3)
+	bullet["vely"] = math.random(-3,3)
 	RandombulletOrientation(bullet)
 end
 

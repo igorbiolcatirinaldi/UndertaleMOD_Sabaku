@@ -26,6 +26,7 @@ startingDirection = false
 
 function RandomBulletOrientation()
 	bullet.sprite.rotation = math.random(10,80)
+	Audio.PlaySound("bounce",0.8)
 end
 
 function UpdateBulletDirectionMovement()

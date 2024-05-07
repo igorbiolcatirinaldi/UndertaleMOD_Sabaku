@@ -18,14 +18,15 @@ damage = 6
 
 function RandombulletOrientation(bullet)
 	bullet.sprite.rotation = math.random(10,80)
+	Audio.PlaySound("bounce",0.8)
 end
 function UpdatebulletDirectionMovement(bullet,left)
 	if left == true then
-		bullet["velx"] = math.random(4,6)
+		bullet["velx"] = 5--math.random(5,6)
 	else
-		bullet["velx"] = -1 * math.random(4,6)
+		bullet["velx"] = -1 * 5--math.random(5,6)
 	end
-	bullet["vely"] = math.random(2,3)
+	bullet["vely"] = math.random(-3,3)
 	RandombulletOrientation(bullet)
 end
 

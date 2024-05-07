@@ -6,7 +6,7 @@ nextwaves = {"logoarena"} -- first attack
 wavetimer = 10--0.0
 arenasize = {155, 130}
 indexAttack = 0
-attacksPhase = 1
+attacksPhase = 3--1
 attackCombo = false
 flee = false
 
@@ -35,7 +35,7 @@ function EncounterStarting()
 	Player.hp = 99
 	Player.atk = 101
 	Player.def = 99
-	Player.name = "Rogy"
+	Player.name = "P"
 	--DEBUG("weapon" .. Player.weapon)
 	--DEBUG("weapon atk" .. Player.weaponatk)
 	enemies[1].GetVar("parrySprite").Remove()
@@ -104,7 +104,7 @@ function EnemyDialogueEnding()
 	
 	if nextwaves[1] == "logocombo_pingpongboomblast" or nextwaves[1] == "logocoin" .. attacksPhase
 		or nextwaves[1] == "logocoinboom" .. attacksPhase or nextwaves[1] == "logoblast" .. attacksPhase then
-		arenasize = {120,80}
+		arenasize = {125,85}
 		wavetimer = 8.0
 		--Misc.ResizeWindow(Misc.WindowWidth * 1.5,Misc.WindowHeight * 1.5)
 	elseif nextwaves[1] == "logopingpong" .. attacksPhase or nextwaves[1] == "lore" .. attacksPhase then
@@ -120,11 +120,13 @@ function DefenseEnding() --This built-in function fires after the defense round 
 			enemies[1].SetVar("currentdialogue", enemies[1].GetVar("dialogChangePhase1AttackPhase12"))
 			attacksPhase = 2
 			stepphase1 = true
+			indexAttack = 1
 			State("ENEMYDIALOGUE")
 		elseif enemies[1].GetVar("hp") <= 40 and stepphase2 == false then
 			enemies[1].SetVar("currentdialogue", enemies[1].GetVar("dialogChangePhase1AttackPhase23"))
 			attacksPhase = 3
 			stepphase2 = true
+			indexAttack = 1
 			State("ENEMYDIALOGUE")
 		end
 	elseif enemies[1].GetVar("battleSecondPhase") == true then

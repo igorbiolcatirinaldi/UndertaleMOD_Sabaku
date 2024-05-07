@@ -34,9 +34,9 @@ dialoguePersuasion = {"Please do not make me doing this","I know it's hard...","
 dialogueRandomBattleAttacks = {}
 -- dialog pre attacks:
 dialogPreLOREattack = {"I must teach you something...", "...listen this LORE"}
-dialogPreCOINattack = {"My logo is my strenght"}
+dialogPreCOINattack = {"My logo is a source of power"}
 dialogPreBLASTattack = {"Maybe I should use an attack that already make you pain"}
-dialogPrePINGPONGattack = {"The old knowledge is my strenght"}
+dialogPrePINGPONGattack = {"Take this RETRO attack!"}
 dialogPreBOOMattack = {"This is the new version"}
 dialogPreFirstCOMBOattack = {"Wanna try a new combo attack?"}
 -- dialog between attack phases
