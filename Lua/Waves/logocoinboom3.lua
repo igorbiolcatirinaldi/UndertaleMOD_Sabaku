@@ -49,7 +49,7 @@ function CreateBullet(x, y, age, color, ctype)
 	table.insert(bullets, bullet)
 end
 
-function CreateExplosionBullet(x, y, ctype)
+function CreateExplosionBullet(x, y, ctype) -- todo change color
 	local bullet = CreateProjectile("Circle-Exp", x, y)
 	bullet["frame_spawned"] = spawntimer
 	bullet["color"] = ctype

@@ -6,7 +6,7 @@ nextwaves = {"logoarena"} -- first attack
 wavetimer = 10--0.0
 arenasize = {155, 130}
 indexAttack = 0
-attacksPhase = 3--1
+attacksPhase = 3
 attackCombo = false
 flee = false
 
@@ -103,10 +103,13 @@ function EnemyDialogueEnding()
 	end
 	
 	if nextwaves[1] == "logocombo_pingpongboomblast" or nextwaves[1] == "logocoin" .. attacksPhase
-		or nextwaves[1] == "logocoinboom" .. attacksPhase or nextwaves[1] == "logoblast" .. attacksPhase then
+		or nextwaves[1] == "logocoinboom" .. attacksPhase then
 		arenasize = {125,85}
 		wavetimer = 8.0
 		--Misc.ResizeWindow(Misc.WindowWidth * 1.5,Misc.WindowHeight * 1.5)
+	elseif nextwaves[1] == "logoblast" .. attacksPhase then
+		arenasize = {130,90}
+		wavetimer = 9.0
 	elseif nextwaves[1] == "logopingpong" .. attacksPhase or nextwaves[1] == "lore" .. attacksPhase then
 		arenasize = {155, 130}
 		wavetimer = 12.0

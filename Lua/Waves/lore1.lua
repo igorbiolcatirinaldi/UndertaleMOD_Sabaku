@@ -18,7 +18,7 @@ function Update()
 		local xPos = positionsX[index]
 		local yPos = Arena.height + 5
 		CreateBullet(xPos, yPos)
-		if index < 3 then
+		if index < 3 true then
 			index = index + 1
 			prevposition = index
 		else

@@ -21,8 +21,8 @@ defensemisstext = "PARRY"
 parry = false
 parrySprite = CreateSprite("parry0","Top")
 -- Battle
-battleFirstPhase = true--false
-battleSecondPhase = false
+battleFirstPhase = false
+battleSecondPhase =true--false
 countAttacksFirstPhase = 0
 countAttacksHitSecondPhase = 0
 decreasingParryAccuracyValue = 0.1
@@ -35,7 +35,7 @@ dialogueRandomBattleAttacks = {}
 -- dialog pre attacks:
 dialogPreLOREattack = {"I must teach you something...", "...listen this LORE"}
 dialogPreCOINattack = {"My logo is a source of power"}
-dialogPreBLASTattack = {"Maybe I should use an attack that already make you pain"}
+dialogPreBLASTattack = {"Maybe I should use an attack...","...that already make you pain"}
 dialogPrePINGPONGattack = {"Take this RETRO attack!"}
 dialogPreBOOMattack = {"This is the new version"}
 dialogPreFirstCOMBOattack = {"Wanna try a new combo attack?"}

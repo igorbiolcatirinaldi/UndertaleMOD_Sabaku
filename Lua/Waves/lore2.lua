@@ -5,8 +5,10 @@ bullets = {}
 timers = {}
 positionsX = {0, -Arena.width / 2, Arena.width / 2}
 bulletSpeedY = 2
-indeX = 1
-minScale = 0.3
+index = 1
+prevposition = 1
+position = 3
+minScale = 0.8
 maxScale = 1.5
 waveTimer = 0
 
@@ -22,13 +24,18 @@ end
 function Update()
 	waveTimer = Encounter.GetVar("wavetimer")
 	if spawntimer % 60 == 0 then
-		local xPos = positionsX[indeX]
+		local xPos = positionsX[index]
 		local yPos = Arena.height + 5
 		CreateBullet(xPos, yPos)
-		if indeX < 3 then
-			indeX = indeX + 1
+		if index < 3 then
+			index = index + 1
+			prevposition = index
 		else
-			indeX = math.random(1,#positionsX)
+			while prevposition == position do
+				position = math.random(1,#positionsX)
+			end
+			prevposition = position
+			index = position
 		end
 	end
 	

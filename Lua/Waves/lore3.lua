@@ -5,21 +5,24 @@ bullets = {}
 timers = {}
 positionsX = {0, -Arena.width / 2, Arena.width / 2}
 bulletSpeedY = 2
-indeX = 1
+index = 1
+randomColorIndex = 1
+prevposition = 1
+position = 3
 minScale = 1
 maxScale = 2
 waveTimer = 0
 colorsType = {"cyan","orange"}
 colors = {{0/255, 162/255, 232/255},{255/255, 154/255, 34/255}}
-damage = 5
+damage = 9
 
 function CreateBullet(x, y)
 	local bullet = CreateProjectile("LORE", x, y)
 	bullet.sprite.xscale = minScale
 	bullet.sprite.yscale = minScale
-	index = math.random(1,2)
-	bullet.sprite.color = colors[index]
-	bullet.SetVar('color', colorsType[index])
+	randomColorIndex = math.random(1,2)
+	bullet.sprite.color = colors[randomColorIndex]
+	bullet.SetVar('color', colorsType[randomColorIndex])
 	local timer = 0.0
 	table.insert(bullets, bullet)
 	table.insert(timers,timer)
@@ -28,13 +31,18 @@ end
 function Update()
 	waveTimer = Encounter.GetVar("wavetimer")
 	if spawntimer % 60 == 0 then
-		local xPos = positionsX[indeX]
+		local xPos = positionsX[index]
 		local yPos = Arena.height + 5
 		CreateBullet(xPos, yPos)
-		if indeX < 3 then
-			indeX = indeX + 1
+		if index < 3 then
+			index = index + 1
+			prevposition = index
 		else
-			indeX = math.random(1,#positionsX)
+			while prevposition == position do
+				position = math.random(1,#positionsX)
+			end
+			prevposition = position
+			index = position
 		end
 	end
 	

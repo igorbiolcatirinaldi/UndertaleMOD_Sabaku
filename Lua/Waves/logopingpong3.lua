@@ -21,6 +21,11 @@ function RandombulletOrientation(bullet)
 	Audio.PlaySound("bounce",0.8)
 end
 function UpdatebulletDirectionMovement(bullet,left)
+	if(bullet["prevVelx"] == bullet["velx"]) then --TODO: CHECK BUG
+		DEBUG("velx uguale")
+	end
+	bullet["prevVelx"] = bullet["velx"]
+	bullet["prevVely"] = bullet["velxy"]
 	if left == true then
 		bullet["velx"] = 5--math.random(5,6)
 	else
@@ -47,19 +52,25 @@ end
 
 function Update()
 	
-	if timer > 60 and bulletSpawn == false then
+	if timer > 45 and bulletSpawn == false then
 		CreateBullet(-Arena.width-80,-30,35,math.random(4,6),2,{255/255, 255/255, 255/255},"regular")
 		CreateBullet(Arena.width+80,30,15,-math.random(4,6),2,{255/255, 255/255, 255/255},"regular")
-		CreateBullet(-Arena.width-80,30,25,math.random(4,6),3,{0/255, 162/255, 232/255},"cyan")
 		CreateBullet(Arena.width+80,-30,5,-math.random(4,6),3,{255/255, 154/255, 34/255},"orange")
+		CreateBullet(-Arena.width-80,30,25,math.random(4,6),3,{0/255, 162/255, 232/255},"cyan")
 		bulletSpawn = true
 	end	
 	
 	for i = #bullets, 1, -1
 	do
 		currentBullet = bullets[i]
-		if timer > 90 then
-			currentBullet.Move(currentBullet["velx"],currentBullet["vely"])
+		if (i % 2) == 0 then
+			if timer > 90 then
+				currentBullet.Move(currentBullet["velx"],currentBullet["vely"])
+			end
+		else
+			if timer > 120 then
+				currentBullet.Move(currentBullet["velx"],currentBullet["vely"])
+			end
 		end
 		-- lateral check for bounce
 		if currentBullet.x > LogoR.x - 10 then
@@ -71,6 +82,10 @@ function Update()
 		-- vertical check for bounce
 		if currentBullet.y > Arena.height/2 or currentBullet.y < -Arena.height/2 then
 			bulletBounce(currentBullet)
+		end
+		
+		if(currentBullet["vely"] <= 0.1) then
+			DEBUG("vel y = 0")
 		end
 	end
 	
