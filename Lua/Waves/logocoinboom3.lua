@@ -5,14 +5,14 @@ bullets = {}
 explosionBullets = {}
 directions = {}
 bulletSpeed = 2
-explosionBulletLife = 20
+explosionBulletLife = 30
 playerResetPos = false
 offsetX = 20
 positionsX = {0, -Arena.width + offsetX, Arena.width - offsetX}
-ageBullets = {60,80,100}
+ageBullets = {60,90,120}
 colorsType = {"regular","cyan","orange"}
 colors = {{255/255,255/255,0/255},{0/255, 162/255, 232/255},{255/255, 154/255, 34/255}}
-damage = 5
+damage = 8
 sabakuLogo1 = CreateProjectile("SabakuLogoWSym", -Arena.width, Arena.height / 2 + 20)
 sabakuLogo1.sprite.color = colors[2]
 sabakuLogo1.sprite.xscale = 0.35
@@ -44,15 +44,18 @@ function CreateBullet(x, y, age, color, ctype)
 	bullet["age"] = age
 	bullet["movingtime"] = 0
 	bullet["explodingtime"] = math.random(30,80)
-	bullet["color"] = ctype
+	bullet["color"] = color
+	bullet["color_type"] = ctype
 	bullet.sprite.color = color
 	table.insert(bullets, bullet)
 end
 
-function CreateExplosionBullet(x, y, ctype) -- todo change color
-	local bullet = CreateProjectile("Circle-Exp", x, y)
+function CreateExplosionBullet(x, y, color, ctype)
+	local bullet = CreateProjectile("Explosion_Original", x, y)
+	bullet.ppcollision = true
 	bullet["frame_spawned"] = spawntimer
 	bullet["color"] = ctype
+	bullet.sprite.color = color
 	bullet.sprite.xscale = 0.05
 	bullet.sprite.yscale = 0.05
 	table.insert(explosionBullets, bullet)
@@ -92,7 +95,7 @@ function Update()
 			currentBullet.Move(currentBullet["velx"], currentBullet["vely"])
 		elseif spawntimer >= (currentBullet["movingtime"] + currentBullet["explodingtime"]) then
 			-- explode
-			CreateExplosionBullet(currentBullet.x,currentBullet.y,currentBullet["color"])
+			CreateExplosionBullet(currentBullet.x,currentBullet.y,currentBullet["color"],currentBullet["color_type"])
 			Audio.PlaySound("boom10",0.8)
 			currentBullet.Remove()
 			table.remove(bullets, i)

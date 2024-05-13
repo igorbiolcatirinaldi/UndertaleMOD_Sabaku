@@ -7,7 +7,7 @@ directions = {}
 bulletSpeed = 2
 bulletStartAttackAge1 = 60
 bulletStartAttackAge2 = 100
-explosionBulletLife = 20
+explosionBulletLife = 30
 playerResetPos = false
 yellow = {1,1,0}
 sabakuLogo1 = CreateProjectile("SabakuLogoWSym", -Arena.width, Arena.height / 2 + 20)
@@ -42,7 +42,9 @@ function CreateBullet(x, y, age, pos)
 end
 
 function CreateExplosionBullet(x, y)
-	local bullet = CreateProjectile("Circle-Exp", x, y)
+	local bullet = CreateProjectile("Explosion_Original", x, y)
+	bullet.ppcollision = true
+	bullet.sprite.color = yellow
 	bullet["frame_spawned"] = spawntimer
 	bullet.sprite.xscale = 0.05
 	bullet.sprite.yscale = 0.05
