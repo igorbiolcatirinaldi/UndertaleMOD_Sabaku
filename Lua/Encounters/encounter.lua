@@ -5,9 +5,9 @@ encountertext = "Sabaku STOPS YOU!" --Modify as necessary. It will only be read 
 nextwaves = {"logoarena"} -- first attack
 wavetimer = 10--0.0
 arenasize = {155, 130}
-indexAttack = 0
-attacksPhase = 3
-attackCombo = false
+indexAttack = 1
+attacksPhase = 1
+attackCombo = true--false
 flee = false
 
 stepphase1 = false
@@ -68,7 +68,7 @@ function EnemyDialogueStarting()
 				enemies[1].SetVar("currentdialogue", enemies[1].GetVar(""))  -- random?
 			end
 		else
-			if indexAttack >= 1 and indexAttack <= #attackCombo then
+			if indexAttack >= 1 and indexAttack <= #attacks_combo then
 				enemies[1].SetVar("currentdialogue", enemies[1].GetVar("dialogPreFirstCOMBOattack"))
 			else
 				enemies[1].SetVar("currentdialogue", enemies[1].GetVar(""))  -- random?
@@ -102,7 +102,8 @@ function EnemyDialogueEnding()
 		end
 	end
 	
-	if nextwaves[1] == "logocombo_pingpongboomblast" or nextwaves[1] == "logocoin" .. attacksPhase then
+	if nextwaves[1] == "logocombo_pingpongboomblast" or nextwaves[1] == "logocombo_pingpongboom" or 
+		nextwaves[1] == "logocombo_pingpongblast" or nextwaves[1] == "logocoin" .. attacksPhase then
 		arenasize = {125,85}
 		wavetimer = 8.0
 		--Misc.ResizeWindow(Misc.WindowWidth * 1.5,Misc.WindowHeight * 1.5)

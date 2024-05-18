@@ -4,10 +4,10 @@
 
 --- PING PONG
 timer = 0
-bulletL = CreateProjectile("Cube", -Arena.width-80,-30)
+bulletL = CreateProjectile("Cube", -Arena.width-80,-20)
 bulletL.sprite.alpha = 0
 bulletL.sprite.rotation = 35
-bulletR = CreateProjectile("Cube", Arena.width+80,30)
+bulletR = CreateProjectile("Cube", Arena.width+80,20)
 bulletR.sprite.alpha = 0
 bulletR.sprite.rotation = 15
 LogoL = CreateProjectile("pxSabakuLogoWSym2", -Arena.width-100,0)
@@ -29,7 +29,7 @@ spawntimer = 0
 bullets = {}
 playerResetPos = false
 bulletLife = 30
-sabakuLogo = CreateProjectile("SabakuLogoWSym", 0, Arena.height / 2 + 10)
+sabakuLogo = CreateProjectile("SabakuLogoWSym", 0, Arena.height / 2 + 20)
 sabakuLogo.sprite.xscale = 0.35
 sabakuLogo.sprite.yscale = 0.35
 FireSound = "gasterfire"
@@ -49,11 +49,11 @@ end
 
 function UpdatebulletDirectionMovement(bullet,left)
 	if left == true then
-		bullet["velx"] = 4 --math.random(4,6)
+		bullet["velx"] = math.random(4,6)
 	else
-		bullet["velx"] = -1 * 4-- math.random(1,3)
+		bullet["velx"] = -1 * math.random(4,6)
 	end
-	bullet["vely"] = 2--math.random(1,3)
+	bullet["vely"] = math.random(2,3)
 	RandombulletOrientation(bullet)
 end
 

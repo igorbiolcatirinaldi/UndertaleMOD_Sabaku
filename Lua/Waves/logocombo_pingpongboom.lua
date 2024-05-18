@@ -4,10 +4,10 @@
 
 --- PING PONG
 timer = 0
-bulletL = CreateProjectile("Cube", -Arena.width-80,-30)
+bulletL = CreateProjectile("Cube", -Arena.width-80,-20)
 bulletL.sprite.alpha = 0
 bulletL.sprite.rotation = 35
-bulletR = CreateProjectile("Cube", Arena.width+80,30)
+bulletR = CreateProjectile("Cube", Arena.width+80,20)
 bulletR.sprite.alpha = 0
 bulletR.sprite.rotation = 15
 LogoL = CreateProjectile("pxSabakuLogoWSym2", -Arena.width-100,0)
@@ -35,7 +35,7 @@ bulletExplodingAge = 90
 explosionBulletLife = 30
 playerResetPos = false
 yellow = {1,1,0}
-sabakuLogo = CreateProjectile("SabakuLogoWSym", 0, Arena.height / 2 + 20)
+sabakuLogo = CreateProjectile("SabakuLogoWSym", 0, Arena.height / 2 + 10)
 sabakuLogo.sprite.color = yellow
 sabakuLogo.sprite.xscale = 0.35
 sabakuLogo.sprite.yscale = 0.35
@@ -50,11 +50,11 @@ end
 
 function UpdatebulletDirectionMovement(bullet,left)
 	if left == true then
-		bullet["velx"] = 4 --math.random(4,6)
+		bullet["velx"] = math.random(4,6)
 	else
-		bullet["velx"] = -1 * 4-- math.random(1,3)
+		bullet["velx"] = -1 * math.random(4,6)
 	end
-	bullet["vely"] = 2--math.random(1,3)
+	bullet["vely"] = math.random(2,3)
 	RandombulletOrientation(bullet)
 end
 
@@ -83,8 +83,9 @@ function CreateBullet(x, y)
 end
 
 function CreateExplosionBullet(x, y)
-	local bullet = CreateProjectile("Circle-Exp", x, y)
+	local bullet = CreateProjectile("Explosion_Original", x, y)
 	bullet["frame_spawned"] = spawntimer
+	bullet.sprite.color = yellow
 	bullet.sprite.xscale = 0.05
 	bullet.sprite.yscale = 0.05
 	table.insert(explosionBullets, bullet)
@@ -139,7 +140,7 @@ function Update()
 	end
 	if spawntimer % 120 == 0 then
 		local xPos = Player.x / 8
-		local yPos = Arena.height - 10
+		local yPos = Arena.height - 20
 		CreateBullet(xPos, yPos)
 	end
 	

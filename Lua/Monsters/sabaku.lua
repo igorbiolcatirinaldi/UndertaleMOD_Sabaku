@@ -22,7 +22,7 @@ parry = false
 parrySprite = CreateSprite("parry0","Top")
 -- Battle
 battleFirstPhase = false
-battleSecondPhase =true--false
+battleSecondPhase = true--false
 countAttacksFirstPhase = 0
 countAttacksHitSecondPhase = 0
 decreasingParryAccuracyValue = 0.1
