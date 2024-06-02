@@ -7,6 +7,7 @@ bulletSpeedY = 2
 index = 1
 prevposition = 1
 position = 3
+first = true
 
 function CreateBullet(x, y)
 	local bullet = CreateProjectile("LORE", x, y)
@@ -18,10 +19,11 @@ function Update()
 		local xPos = positionsX[index]
 		local yPos = Arena.height + 5
 		CreateBullet(xPos, yPos)
-		if index < 3 then
+		if index < 3 and first == true then
 			index = index + 1
 			prevposition = index
 		else
+			first = false
 			while prevposition == position do
 				position = math.random(1,#positionsX)
 			end

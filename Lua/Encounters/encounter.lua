@@ -3,11 +3,11 @@
 music = "Im_your_last_hope" --Either OGG or WAV. Extension is added automatically. Uncomment for custom music.
 encountertext = "Sabaku STOPS YOU!" --Modify as necessary. It will only be read out in the action select screen.
 nextwaves = {"logoarena"} -- first attack
-wavetimer = 10--0.0
+wavetimer = 0.0
 arenasize = {155, 130}
-indexAttack = 1
+indexAttack = 0
 attacksPhase = 1
-attackCombo = true--false
+attackCombo = false
 flee = false
 
 stepphase1 = false

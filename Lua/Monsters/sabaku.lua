@@ -16,13 +16,13 @@ cancheck = true
 currentdialogue = {"Welcome back"}
 -- Intro
 countParryBeforeStartBattle = 0
-introPhase = false--true
+introPhase = true
 defensemisstext = "PARRY"
 parry = false
 parrySprite = CreateSprite("parry0","Top")
 -- Battle
 battleFirstPhase = false
-battleSecondPhase = true--false
+battleSecondPhase = false
 countAttacksFirstPhase = 0
 countAttacksHitSecondPhase = 0
 decreasingParryAccuracyValue = 0.1
@@ -36,7 +36,7 @@ dialogueRandomBattleAttacks = {}
 dialogPreLOREattack = {"I must teach you something...", "...listen this LORE"}
 dialogPreCOINattack = {"My logo is a source of power"}
 dialogPreBLASTattack = {"Maybe I should use an attack...","...that already make you pain"}
-dialogPrePINGPONGattack = {"Take this RETRO attack!"}
+dialogPrePINGPONGattack = {"Here my RETRO attack!"}
 dialogPreBOOMattack = {"This is the new version"}
 dialogPreFirstCOMBOattack = {"Wanna try a new combo attack?"}
 -- dialog between attack phases
@@ -89,7 +89,7 @@ function BeforeDamageCalculation()
 			Parry({"Please...","You have to stop all of this!","All these murders out of curiosity","The frenzy to discover new CHALLENGE and CONTENTS","Just like me..."}, "rightwide")
 			countParryBeforeStartBattle = countParryBeforeStartBattle + 1
 		elseif countParryBeforeStartBattle == 2 then
-			Parry({"How far would you go?", "Will you ever stop?", "You really think that all this is worthed?","Please..","..Even you..","should have a HEART under that SOUL"},"rightwide")
+			Parry({"How far would you go?", "Will you ever stop?", "You really think that all this is worthed?","Please..","..Even you..","should have a [lettereffect:shake][color:ff0000]HEART [lettereffect:none][color:000000]under that [lettereffect:shake][color:ff0000]SOUL"},"rightwide")
 			countParryBeforeStartBattle = countParryBeforeStartBattle + 1
 		elseif countParryBeforeStartBattle == 3 then
 			Parry({"Well...","As excepected..","..talk with you is meaningless","You'll change idea with THIS FIGHT"},"rightwide")

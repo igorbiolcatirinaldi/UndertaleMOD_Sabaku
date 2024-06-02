@@ -4,8 +4,8 @@ timer = 0
 bullet = CreateProjectile("Cube", -Arena.width-75,0)
 bullet.sprite.alpha = 0
 bullet.sprite.rotation = 35
-bulletSpeedX = 4
-bulletSpeedY = 4
+bulletSpeedX = 4.5
+bulletSpeedY = 4.5
 bulletL = CreateProjectile("pxSabakuLogoWSym2", -Arena.width-100,0)
 bulletR = CreateProjectile("pxSabakuLogoWSym2", Arena.width+100,0)
 bulletL.ppcollision = true
@@ -30,6 +30,8 @@ function RandomBulletOrientation()
 end
 
 function UpdateBulletDirectionMovement()
+	bulletSpeedX = bulletSpeedX + 0.5
+	bulletSpeedY = bulletSpeedY + 0.5
 	differenceX = Player.x - bullet.x
 	differenceY = Player.y - bullet.y
 	lengthSquared = math.pow(differenceX, 2) + math.pow(differenceY, 2)
@@ -59,12 +61,12 @@ function Update()
 		bullet.Move(velocityX,velocityY)
 	end
 	
-	if bullet.x > bulletR.x - 10 or bullet.x < bulletL.x + 10 then
-		UpdateBulletDirectionMovement()
-	end
-	
 	if bullet.y > Arena.height/2 or bullet.y < -Arena.height/2 then
 		BulletBounce()
+	end
+	
+	if bullet.x > bulletR.x - 10 or bullet.x < bulletL.x + 10 then
+		UpdateBulletDirectionMovement()
 	end
 	
 	timer = timer + 1

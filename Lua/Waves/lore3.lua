@@ -15,6 +15,7 @@ waveTimer = 0
 colorsType = {"cyan","orange"}
 colors = {{0/255, 162/255, 232/255},{255/255, 154/255, 34/255}}
 damage = 9
+first = true
 
 function CreateBullet(x, y)
 	local bullet = CreateProjectile("LORE", x, y)
@@ -34,10 +35,11 @@ function Update()
 		local xPos = positionsX[index]
 		local yPos = Arena.height + 5
 		CreateBullet(xPos, yPos)
-		if index < 3 then
+		if index < 3 and first == true then
 			index = index + 1
 			prevposition = index
 		else
+			first = false
 			while prevposition == position do
 				position = math.random(1,#positionsX)
 			end
