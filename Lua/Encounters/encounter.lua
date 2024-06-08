@@ -13,6 +13,7 @@ flee = false
 stepphase1 = false
 stepphase2 = false
 stepphase3 = false
+changestepdialogue = false
 
 autolinebreak = true
 
@@ -48,33 +49,37 @@ end
 function EnemyDialogueStarting()
     -- Good location for setting monster dialogue depending on how the battle is going
 
-	if enemies[1].GetVar("battleFirstPhase") == true then
-		if indexAttack == 1 then
-			enemies[1].SetVar("currentdialogue", enemies[1].GetVar("dialogPreLOREattack"))
-		elseif indexAttack == 2 then
-			enemies[1].SetVar("currentdialogue", enemies[1].GetVar("dialogPreCOINattack"))
-		elseif indexAttack == 3 then
-			enemies[1].SetVar("currentdialogue", enemies[1].GetVar("dialogPrePINGPONGattack"))
-		--else
-			--enemies[1].SetVar("currentdialogue", enemies[1].GetVar("")) -- random?
-		end
-	elseif enemies[1].GetVar("battleSecondPhase") == true then
-		if attackCombo == false then
+	if changestepdialogue == true then
+		changestepdialogue = false
+	else
+		if enemies[1].GetVar("battleFirstPhase") == true then
 			if indexAttack == 1 then
-				enemies[1].SetVar("currentdialogue", enemies[1].GetVar("dialogPreBOOMattack"))
+				enemies[1].SetVar("currentdialogue", enemies[1].GetVar("dialogPreLOREattack"))
 			elseif indexAttack == 2 then
-				enemies[1].SetVar("currentdialogue", enemies[1].GetVar("dialogPreBLASTattack"))
-			else
-				enemies[1].SetVar("currentdialogue", enemies[1].GetVar(""))  -- random?
+				enemies[1].SetVar("currentdialogue", enemies[1].GetVar("dialogPreCOINattack"))
+			elseif indexAttack == 3 then
+				enemies[1].SetVar("currentdialogue", enemies[1].GetVar("dialogPrePINGPONGattack"))
+			--else
+				--enemies[1].SetVar("currentdialogue", enemies[1].GetVar("")) -- random?
 			end
-		else
-			if indexAttack >= 1 and indexAttack <= #attacks_combo then
-				enemies[1].SetVar("currentdialogue", enemies[1].GetVar("dialogPreFirstCOMBOattack"))
+		elseif enemies[1].GetVar("battleSecondPhase") == true then
+			if attackCombo == false then
+				if indexAttack == 1 then
+					enemies[1].SetVar("currentdialogue", enemies[1].GetVar("dialogPreBOOMattack"))
+				elseif indexAttack == 2 then
+					enemies[1].SetVar("currentdialogue", enemies[1].GetVar("dialogPreBLASTattack"))
+				else
+					enemies[1].SetVar("currentdialogue", enemies[1].GetVar(""))  -- random?
+				end
 			else
-				enemies[1].SetVar("currentdialogue", enemies[1].GetVar(""))  -- random?
+				if indexAttack >= 1 and indexAttack <= #attacks_combo then
+					enemies[1].SetVar("currentdialogue", enemies[1].GetVar("dialogPreFirstCOMBOattack"))
+				else
+					enemies[1].SetVar("currentdialogue", enemies[1].GetVar(""))  -- random?
+				end
 			end
 		end
-	end
+	end	
 end
 
 function EnemyDialogueEnding()
@@ -123,30 +128,37 @@ function DefenseEnding() --This built-in function fires after the defense round 
 			enemies[1].SetVar("currentdialogue", enemies[1].GetVar("dialogChangePhase1AttackPhase12"))
 			attacksPhase = 2
 			stepphase1 = true
-			indexAttack = 1
+			indexAttack = 0
+			changestepdialogue = true
 			State("ENEMYDIALOGUE")
 		elseif enemies[1].GetVar("hp") <= 40 and stepphase2 == false then
 			enemies[1].SetVar("currentdialogue", enemies[1].GetVar("dialogChangePhase1AttackPhase23"))
 			attacksPhase = 3
 			stepphase2 = true
-			indexAttack = 1
+			indexAttack = 0
+			changestepdialogue = true
 			State("ENEMYDIALOGUE")
 		end
 	elseif enemies[1].GetVar("battleSecondPhase") == true then
 		if enemies[1].GetVar("hp") <= 75 and stepphase1 == false then
 			enemies[1].SetVar("currentdialogue", enemies[1].GetVar("dialogChangePhase2AttackPhase12"))
 			attacksPhase = 2
+			indexAttack = 0
 			stepphase1 = true
+			changestepdialogue = true
 			State("ENEMYDIALOGUE")
 		elseif enemies[1].GetVar("hp") <= 50 and stepphase2 == false then
 			enemies[1].SetVar("currentdialogue", enemies[1].GetVar("dialogChangePhase2AttackPhase23"))
 			attacksPhase = 3
+			indexAttack = 0
 			stepphase2 = true
+			changestepdialogue = true
 			State("ENEMYDIALOGUE")
 		elseif enemies[1].GetVar("hp") <= 25 and stepphase3 == false then
 			enemies[1].SetVar("currentdialogue", enemies[1].GetVar("dialogChangePhase2AttackPhase3combo"))
 			attackCombo = true
 			stepphase3 = true
+			changestepdialogue = true
 			State("ENEMYDIALOGUE")
 		end
 	end

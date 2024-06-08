@@ -45,11 +45,11 @@ dialogChangePhase1AttackPhase12 = {"This was only the warm-up","Welcome to next 
 -- (phase 1) 2->3
 dialogChangePhase1AttackPhase23 = {"..Not bad..","Ok, maybe a bit understimation","Time to the true power","[func:State,ACTIONSELECT]"}
 -- (phase 2) 1->2 
-dialogChangePhase2AttackPhase12 = {"Ok boy, you need my full attention", "I need to FOCUS"}
+dialogChangePhase2AttackPhase12 = {"Ok boy, you need my full attention", "I need to [lettereffect:shake][color:ffffff]FOCUS","[func:State,ACTIONSELECT]"}
 -- (phase 2) 2->3 
-dialogChangePhase2AttackPhase23 = {"How are you still alive?", "I will use my final form attacks!"}
+dialogChangePhase2AttackPhase23 = {"How are you still alive?", "I will use my final form attacks!","[func:State,ACTIONSELECT]"}
 -- (phase 1) 3->combo 
-dialogChangePhase2AttackPhase3combo = {"How are you still here?", "I will use my final skill:","ECCLETISM!"}
+dialogChangePhase2AttackPhase3combo = {"How are you still here?", "I will use my final skill:","[lettereffect:shake][color:ffff00]ECCLETISM!","[func:State,ACTIONSELECT]"}
 -- end 
 dialogDefeat = {"I..?","How..?","Even with...?","...","I see...", "..so is this..", "your [lettereffect:shake][color:ffffff]DETERMINATION"}
 
