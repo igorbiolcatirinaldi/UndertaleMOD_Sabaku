@@ -7,10 +7,10 @@ bulletSpeed = 3
 playerResetPos = false
 ageBullet1 = 60
 ageBullet2 = 100
-sabakuLogo1 = CreateProjectile("SabakuLogoWSym", -Arena.width, Arena.height / 2 + 20)
+sabakuLogo1 = CreateProjectile("SabakuLogoWSym", -Arena.width +40, Arena.height / 2 + 10)
 sabakuLogo1.sprite.xscale = 0.35
 sabakuLogo1.sprite.yscale = 0.35
-sabakuLogo2 = CreateProjectile("SabakuLogoWSym", Arena.width, Arena.height / 2 + 20)
+sabakuLogo2 = CreateProjectile("SabakuLogoWSym", Arena.width -40, Arena.height / 2 + 10)
 sabakuLogo2.sprite.xscale = 0.35
 sabakuLogo2.sprite.yscale = 0.35
 
@@ -41,9 +41,9 @@ function Update()
 		playerResetPos = true
 	end
 	if spawntimer % 60 == 0 then
-		local xPosLeft = -Arena.width + 30 + Player.x / 8
-		local xPosRight = Arena.width - 30 + Player.x / 8
-		local yPos = Arena.height - 20
+		local xPosLeft = -Arena.width / 2
+		local xPosRight = Arena.width / 2
+		local yPos = sabakuLogo1.y - 17
 		CreateBullet(xPosLeft, yPos, ageBullet1, "left")
 		CreateBullet(xPosRight, yPos, ageBullet2, "right")
 	end
@@ -60,9 +60,9 @@ function Update()
 			currentBullet.Move(currentBullet["velx"], currentBullet["vely"])
 		else
 			if currentBullet["position"] == "left" then
-				currentBullet.x = -Arena.width + 30 + Player.x / 8
+				currentBullet.x = -Arena.width / 2 + Player.x / 7
 			else
-				currentBullet.x = Arena.width - 30 + Player.x / 8
+				currentBullet.x = Arena.width / 2 + Player.x / 7
 			end
 		end
 		

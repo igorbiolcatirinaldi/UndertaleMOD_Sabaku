@@ -90,7 +90,7 @@ function Update()
 		end
 		
 	end
-	end
+
 	
 	timer = timer + 1
 end

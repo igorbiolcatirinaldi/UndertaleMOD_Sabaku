@@ -6,18 +6,18 @@ directions = {}
 bulletSpeed = 2.5
 playerResetPos = false
 offsetX = 20
-positionsX = {0, -Arena.width + offsetX, Arena.width - offsetX}
+positionsX = {0, -Arena.width / 2, Arena.width / 2}
 ageBullets = {60,80,100}
 colorsType = {"regular","cyan","orange"}
 colors = {{255/255, 255/255, 255/255},{0/255, 162/255, 232/255},{255/255, 154/255, 34/255}}
 damage = 5
-sabakuLogoL = CreateProjectile("SabakuLogoWSym", -Arena.width, Arena.height / 2 + 20)
+sabakuLogoL = CreateProjectile("SabakuLogoWSym", -Arena.width + 40, Arena.height / 2 + 10)
 sabakuLogoL.sprite.xscale = 0.35
 sabakuLogoL.sprite.yscale = 0.35
-sabakuLogoR = CreateProjectile("SabakuLogoWSym", Arena.width, Arena.height / 2 + 20)
+sabakuLogoR = CreateProjectile("SabakuLogoWSym", Arena.width - 40, Arena.height / 2 + 10)
 sabakuLogoR.sprite.xscale = 0.35
 sabakuLogoR.sprite.yscale = 0.35
-sabakuLogoC = CreateProjectile("SabakuLogoWSym", 0, Arena.height / 2 + 20)
+sabakuLogoC = CreateProjectile("SabakuLogoWSym", 0, Arena.height / 2 + 10)
 sabakuLogoC.sprite.xscale = 0.35
 sabakuLogoC.sprite.yscale = 0.35
 
@@ -51,7 +51,7 @@ function Update()
 		playerResetPos = true
 	end
 	if spawntimer % 60 == 0 then
-		local yPos = Arena.height - 20
+		local yPos = sabakuLogoL.y - 17
 		-- center
 		CreateBullet(positionsX[1],yPos,ageBullets[1],colors[1],colorsType[1])
 		-- left
@@ -71,7 +71,7 @@ function Update()
 			end
 			currentBullet.Move(currentBullet["velx"], currentBullet["vely"])
 		else
-			currentBullet.x = currentBullet["positionX"] + Player.x / 5
+			currentBullet.x = currentBullet["positionX"] + Player.x / 7
 		end
 		
 		if currentBullet.y < -Arena.height then

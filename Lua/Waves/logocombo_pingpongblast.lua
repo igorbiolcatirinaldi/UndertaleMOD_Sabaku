@@ -53,7 +53,11 @@ function UpdatebulletDirectionMovement(bullet,left)
 	else
 		bullet["velx"] = -1 * math.random(4,6)
 	end
-	bullet["vely"] = math.random(2,3)
+	if bullet.y > 0 then 
+		bullet["vely"] = math.random(-3,-2)
+	else
+		bullet["vely"] = math.random(2,3)
+	end
 	RandombulletOrientation(bullet)
 end
 
@@ -104,6 +108,13 @@ function Update()
 		bulletR.Move(bulletR["velx"], bulletR["vely"])
 	end
 	
+	if bulletL.y > Arena.height/2 or bulletL.y < -Arena.height/2 then
+		bulletBounce(bulletL)
+	end
+	if bulletR.y > Arena.height/2 or bulletR.y < -Arena.height/2 then
+		bulletBounce(bulletR)
+	end
+	
 	if bulletL.x > LogoR.x - 10 then
 		UpdatebulletDirectionMovement(bulletL,false)
 	elseif bulletL.x < LogoL.x + 10 then
@@ -116,12 +127,6 @@ function Update()
 		UpdatebulletDirectionMovement(bulletR,true)
 	end
 	
-	if bulletL.y > Arena.height/2 or bulletL.y < -Arena.height/2 then
-		bulletBounce(bulletL)
-	end
-	if bulletR.y > Arena.height/2 or bulletR.y < -Arena.height/2 then
-		bulletBounce(bulletR)
-	end
 	
 	timer = timer + 1
 	

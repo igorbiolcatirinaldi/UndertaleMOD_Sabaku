@@ -41,7 +41,7 @@ dialogPreBOOMattack = {"This is the new version"}
 dialogPreFirstCOMBOattack = {"Wanna try a new combo attack?"}
 -- dialog between attack phases
 -- (phase 1) 1->2 
-dialogChangePhase1AttackPhase12 = {"This was only the warming-up","Welcome to next level![noskip]","[func:State,ACTIONSELECT]"}
+dialogChangePhase1AttackPhase12 = {"This was only the warm-up","Welcome to next level![noskip]","[func:State,ACTIONSELECT]"}
 -- (phase 1) 2->3
 dialogChangePhase1AttackPhase23 = {"..Not bad..","Ok, maybe a bit understimation","Time to the true power","[func:State,ACTIONSELECT]"}
 -- (phase 2) 1->2 
@@ -51,7 +51,7 @@ dialogChangePhase2AttackPhase23 = {"How are you still alive?", "I will use my fi
 -- (phase 1) 3->combo 
 dialogChangePhase2AttackPhase3combo = {"How are you still here?", "I will use my final skill:","ECCLETISM!"}
 -- end 
-dialogDefeat = {"I..?","How..?","Even with...?","...","I see...", "..so is this..", "your DETERMINATION"}
+dialogDefeat = {"I..?","How..?","Even with...?","...","I see...", "..so is this..", "your [lettereffect:shake][color:ffffff]DETERMINATION"}
 
 -- Happens after the slash animation and BeforeDamageCalculation 
 function HandleAttack(attackstatus)
@@ -86,10 +86,10 @@ function BeforeDamageCalculation()
 			Parry({"Surprise?","Do you really think...","...I wasn't able to use my power?","Yes I can","Even HERE I can [instant][lettereffect:shake][color:ff0000]PARRY!"},"right")
 			countParryBeforeStartBattle = countParryBeforeStartBattle + 1
 		elseif countParryBeforeStartBattle == 1 then
-			Parry({"Please...","You have to stop all of this!","All these murders out of curiosity","The frenzy to discover new CHALLENGE and CONTENTS","Just like me..."}, "rightwide")
+			Parry({"Please...","You have to stop all of this!","All these murders out of curiosity","The frenzy to discover new [lettereffect:?]CHALLENGE and [lettereffect:?]CONTENTS","Just like me..."}, "rightwide")
 			countParryBeforeStartBattle = countParryBeforeStartBattle + 1
 		elseif countParryBeforeStartBattle == 2 then
-			Parry({"How far would you go?", "Will you ever stop?", "You really think that all this is worthed?","Please..","..Even you..","should have a [lettereffect:shake][color:ff0000]HEART [lettereffect:none][color:000000]under that [lettereffect:shake][color:ff0000]SOUL"},"rightwide")
+			Parry({"How far would you go?", "Will you ever stop?", "You really think that all this is worthed?","Please..","..Even you..","should have a [lettereffect:shake][color:ff0000]HEART [lettereffect:none][color:000000]under that [lettereffect:shake][color:ffffff]SOUL"},"rightwide")
 			countParryBeforeStartBattle = countParryBeforeStartBattle + 1
 		elseif countParryBeforeStartBattle == 3 then
 			Parry({"Well...","As excepected..","..talk with you is meaningless","You'll change idea with THIS FIGHT"},"rightwide")
