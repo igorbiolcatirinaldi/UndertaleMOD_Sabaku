@@ -54,11 +54,11 @@ function EnemyDialogueStarting()
 	else
 		if enemies[1].GetVar("battleFirstPhase") == true then
 			if indexAttack == 1 then
-				enemies[1].SetVar("currentdialogue", enemies[1].GetVar("dialogPreLOREattack"))
+				enemies[1].SetVar("currentdialogue", enemies[1].GetVar("dialogPreLOREattack" .. attacksPhase))
 			elseif indexAttack == 2 then
-				enemies[1].SetVar("currentdialogue", enemies[1].GetVar("dialogPreCOINattack"))
+				enemies[1].SetVar("currentdialogue", enemies[1].GetVar("dialogPreCOINattack" .. attacksPhase))
 			elseif indexAttack == 3 then
-				enemies[1].SetVar("currentdialogue", enemies[1].GetVar("dialogPrePINGPONGattack"))
+				enemies[1].SetVar("currentdialogue", enemies[1].GetVar("dialogPrePINGPONGattack" .. attacksPhase))
 			--else
 				--enemies[1].SetVar("currentdialogue", enemies[1].GetVar("")) -- random?
 			end

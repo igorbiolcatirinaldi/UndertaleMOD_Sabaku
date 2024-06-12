@@ -21,9 +21,6 @@ function RandombulletOrientation(bullet)
 	Audio.PlaySound("bounce",0.8)
 end
 function UpdatebulletDirectionMovement(bullet,left)
-	if(bullet["prevVelx"] == bullet["velx"]) then --TODO: CHECK BUG
-		DEBUG("velx uguale")
-	end
 	bullet["prevVelx"] = bullet["velx"]
 	bullet["prevVely"] = bullet["velxy"]
 	if left == true then

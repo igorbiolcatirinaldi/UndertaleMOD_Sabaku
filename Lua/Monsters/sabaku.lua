@@ -1,7 +1,7 @@
 -- A basic monster script skeleton you can copy and modify for your own creations.
 comments = {}
 commands = {}
-randomdialogue = {"Please do not make me doing this"}
+randomdialogue = {"SEMPER FIGHT!"}
 Undyingtheme = "Undertale_But_Refused_to_Die"
 sprite = "SabakuSprite" --Always PNG. Extension is added automatically.
 spritePhase2 = "SabakuSprite2"
@@ -33,19 +33,25 @@ dialogueAfterBeingHit = {"..So you find an opening to hit AH?","..Well well..","
 dialoguePersuasion = {"Please do not make me doing this","I know it's hard...","...but you are still in time"}
 dialogueRandomBattleAttacks = {}
 -- dialog pre attacks:
-dialogPreLOREattack = {"I must teach you something...", "...listen this LORE"}
-dialogPreCOINattack = {"My logo is a source of power"}
+dialogPreLOREattack1 = {"I must teach you something...", "...listen this LORE"}
+dialogPreLOREattack2 = {"You like lore...", "...here a BIGGER VERSION"}
+dialogPreLOREattack3 = {"LORE has differents aspects...", "...someone to wait and other to search"}
+dialogPreCOINattack1 = {"My logo is a source of power"}
+dialogPreCOINattack2 = {"Double logo means double power"}
+dialogPreCOINattack3 = {"Different logos for a crazy power"}
 dialogPreBLASTattack = {"Maybe I should use an attack...","...that already make you pain"}
-dialogPrePINGPONGattack = {"Here my RETRO attack!"}
+dialogPrePINGPONGattack1 = {"Here my RETRO attack!"}
+dialogPrePINGPONGattack2 = {"RETRO double attack!"}
+dialogPrePINGPONGattack3 = {"RETRO caos attack!"}
 dialogPreBOOMattack = {"This is the new version"}
 dialogPreFirstCOMBOattack = {"Wanna try a new combo attack?"}
 -- dialog between attack phases
 -- (phase 1) 1->2 
 dialogChangePhase1AttackPhase12 = {"This was only the warm-up","Welcome to next level![noskip]","[func:State,ACTIONSELECT]"}
 -- (phase 1) 2->3
-dialogChangePhase1AttackPhase23 = {"..Not bad..","Ok, maybe a bit understimation","Time to the true power","[func:State,ACTIONSELECT]"}
+dialogChangePhase1AttackPhase23 = {"..Not bad..","Ok, maybe a bit of understimation","Now is time for the true power","[func:State,ACTIONSELECT]"}
 -- (phase 2) 1->2 
-dialogChangePhase2AttackPhase12 = {"Ok boy, you need my full attention", "I need to [lettereffect:shake][color:ffffff]FOCUS","[func:State,ACTIONSELECT]"}
+dialogChangePhase2AttackPhase12 = {"Ok kiddo, you need my full attention", "I need to [lettereffect:shake][color:ffffff]FOCUS","[func:State,ACTIONSELECT]"}
 -- (phase 2) 2->3 
 dialogChangePhase2AttackPhase23 = {"How are you still alive?", "I will use my final form attacks!","[func:State,ACTIONSELECT]"}
 -- (phase 1) 3->combo 
@@ -165,6 +171,7 @@ function FightRestart()
 	Audio.Stop()
 	Audio.PlaySound("mus_sfx_spellcast",0.8)
 	ChangeSabakuSprite()
+	hp = 100
 	Audio.LoadFile(Encounter["music"])
 end
 
@@ -173,15 +180,15 @@ function OnDeath()
 		Audio.Stop()
 		battleFirstPhase = false
 		battleSecondPhase = true
-		Encounter.SetVar("indexAttack",1)
+		Encounter.SetVar("indexAttack",0)
 		Encounter.SetVar("attackPhase",1)
 		Encounter.SetVar("stepphase1",false)
 		Encounter.SetVar("stepphase2",false)
+		Encounter.SetVar("changestepdialogue",true)
 		currentdialogue = {"....","You!!","You are stronger than me?!", "I should aspected that", "But..","..I didn't imagine this end..","[noskip]...[w:45][next]","..no..","NO![func:HopeMusic]","There is one last thing!","One last HOPE!","I will use the power of the 6 human souls", "Asgore forgive me but it's necessary","...","[func:FightRestart]","Here my ULTIMATE form","[func:State,ACTIONSELECT]"}
 		dialogbubble = "rightwide"
-		State("ENEMYDIALOGUE")
 		check = "THE ULTIMATE..\n..MONSTER?"
-		hp = 100
+		State("ENEMYDIALOGUE")
 	elseif battleSecondPhase == true then
 		-- REAL DEATH
 		Audio.Stop()
