@@ -57,7 +57,7 @@ function Update()
 			setupspawnL = true
 		elseif setupspawnL == true and spawntimer > timerSpawnHelperL + frameToSpawn	then
 			local xPos = -Arena.width + 5
-			local yPos = Arena.height
+			local yPos = sabakuLogoL.y
 			CreateBullet(xPos, yPos, angleL, "left")
 			Audio.PlaySound(FireSound)
 			setupspawnL = false
@@ -69,7 +69,7 @@ function Update()
 			setupspawnR = true
 		elseif setupspawnR == true and spawntimer > timerSpawnHelperR + frameToSpawn	then
 			local xPos = Arena.width - 5
-			local yPos = Arena.height
+			local yPos = sabakuLogoR.y
 			CreateBullet(xPos, yPos, angleR, "rigth")
 			Audio.PlaySound(FireSound)
 			setupspawnR = false

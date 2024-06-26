@@ -181,19 +181,19 @@ function OnDeath()
 		battleFirstPhase = false
 		battleSecondPhase = true
 		Encounter.SetVar("indexAttack",0)
-		Encounter.SetVar("attackPhase",1)
+		Encounter.SetVar("attacksPhase",1)
 		Encounter.SetVar("stepphase1",false)
 		Encounter.SetVar("stepphase2",false)
 		Encounter.SetVar("changestepdialogue",true)
 		currentdialogue = {"....","You!!","You are stronger than me?!", "I should aspected that", "But..","..I didn't imagine this end..","[noskip]...[w:45][next]","..no..","NO![func:HopeMusic]","There is one last thing!","One last HOPE!","I will use the power of the 6 human souls", "Asgore forgive me but it's necessary","...","[func:FightRestart]","Here my ULTIMATE form","[func:State,ACTIONSELECT]"}
-		dialogbubble = "rightwide"
+		dialogbubble = "rightlong"
 		check = "THE ULTIMATE..\n..MONSTER?"
 		State("ENEMYDIALOGUE")
 	elseif battleSecondPhase == true then
 		-- REAL DEATH
 		Audio.Stop()
 		currentdialogue = dialogDefeat
-		dialogbubble = "rightwide"
+		dialogbubble = "rightlong"
 		State("ENEMYDIALOGUE")
 	end
 end

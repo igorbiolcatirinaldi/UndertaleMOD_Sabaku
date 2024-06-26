@@ -37,7 +37,7 @@ end
 
 function Update()
 	if updateAngle == true then
-		angle =  math.deg(math.asin(Player.x/math.abs(Player.y-sabakuLogo.y)))
+		angle =  math.deg(math.atan(Player.x/math.abs(Player.y-sabakuLogo.y)))
 		sabakuLogo.sprite.rotation = angle
 	end
 	
@@ -53,7 +53,7 @@ function Update()
 			setupspawn = true
 		elseif setupspawn == true and spawntimer > timerSpawnHelper + frameToSpawn	then
 			local xPos = 0
-			local yPos = Arena.height
+			local yPos = sabakuLogo.y
 			CreateBullet(xPos, yPos, angle)
 			Audio.PlaySound(FireSound)
 			setupspawn = false

@@ -50,7 +50,7 @@ end
 
 function Update()
 	if updateAngle == true then
-		angle =  math.deg(math.asin(Player.x/math.abs(Player.y-sabakuLogo.y)))
+		angle =  math.deg(math.atan(Player.x/math.abs(Player.y-sabakuLogo.y)))
 		sabakuLogo.sprite.rotation = angle
 	end
 	
@@ -71,7 +71,7 @@ function Update()
 			sabakuLogoR.MoveTo(Arena.width + 20,RandomHeightPositions[math.random(1,#RandomHeightPositions)])
 		elseif setupspawn == true and spawntimer > timerSpawnHelper + frameToSpawn	then
 			local xPos = 0
-			local yPos = Arena.height
+			local yPos = sabakuLogo.y
 			CreateBullet(xPos, yPos, angle)
 			CreateBullet(sabakuLogoL.x, sabakuLogoL.y, 90)
 			CreateBullet(sabakuLogoR.x, sabakuLogoR.y, -90)
