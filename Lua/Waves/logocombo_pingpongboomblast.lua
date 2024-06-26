@@ -103,7 +103,9 @@ function CreateBulletBoom(x, y)
 end
 
 function CreateExplosionBullet(x, y)
-	local bullet = CreateProjectile("Circle-Exp", x, y)
+	local bullet = CreateProjectile("Explosion_Original", x, y)
+	bullet.ppcollision = true
+	bullet.sprite.color = yellow
 	bullet["frame_spawned"] = spawntimer
 	bullet.sprite.xscale = 0.05
 	bullet.sprite.yscale = 0.05
@@ -230,7 +232,7 @@ function Update()
 			setupspawn = true
 		elseif setupspawn == true and spawntimer > timerSpawnHelper + frameToSpawn	then
 			local xPos = Arena.width
-			local yPos = Arena.height - 5
+			local yPos = sabakuLogoBlast.y
 			CreateBulletBlast(xPos, yPos, angle)
 			Audio.PlaySound(FireSound)
 			setupspawn = false

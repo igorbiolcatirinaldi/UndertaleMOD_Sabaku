@@ -140,24 +140,25 @@ function DefenseEnding() --This built-in function fires after the defense round 
 			State("ENEMYDIALOGUE")
 		end
 	elseif enemies[1].GetVar("battleSecondPhase") == true then
-		if enemies[1].GetVar("hp") <= 75 and stepphase1 == false then
+		if enemies[1].GetVar("hp") <= 80 and stepphase1 == false then
 			enemies[1].SetVar("currentdialogue", enemies[1].GetVar("dialogChangePhase2AttackPhase12"))
 			attacksPhase = 2
 			indexAttack = 0
 			stepphase1 = true
 			changestepdialogue = true
 			State("ENEMYDIALOGUE")
-		elseif enemies[1].GetVar("hp") <= 50 and stepphase2 == false then
+		elseif enemies[1].GetVar("hp") <= 60 and stepphase2 == false then
 			enemies[1].SetVar("currentdialogue", enemies[1].GetVar("dialogChangePhase2AttackPhase23"))
 			attacksPhase = 3
 			indexAttack = 0
 			stepphase2 = true
 			changestepdialogue = true
 			State("ENEMYDIALOGUE")
-		elseif enemies[1].GetVar("hp") <= 25 and stepphase3 == false then
+		elseif enemies[1].GetVar("hp") <= 35 and stepphase3 == false then
 			enemies[1].SetVar("currentdialogue", enemies[1].GetVar("dialogChangePhase2AttackPhase3combo"))
 			attackCombo = true
 			stepphase3 = true
+			indexAttack = 0
 			changestepdialogue = true
 			State("ENEMYDIALOGUE")
 		end

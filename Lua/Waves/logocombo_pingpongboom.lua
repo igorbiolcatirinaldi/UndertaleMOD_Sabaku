@@ -89,6 +89,7 @@ end
 function CreateExplosionBullet(x, y)
 	local bullet = CreateProjectile("Explosion_Original", x, y)
 	bullet["frame_spawned"] = spawntimer
+	bullet.ppcollision = true
 	bullet.sprite.color = yellow
 	bullet.sprite.xscale = 0.05
 	bullet.sprite.yscale = 0.05
