@@ -27,6 +27,8 @@ sabakuLogoR = CreateProjectile("SabakuLogoWSym", Arena.width + 20, -25)
 sabakuLogoR.sprite.xscale = 0.35
 sabakuLogoR.sprite.yscale = 0.35
 sabakuLogoR.sprite.rotation = -90
+lateralLogoSetup = true
+lateralLogoReposition = false
 
 function CreateBullet(x, y, angle)
 	local bullet = CreateProjectileAbs("Beam", 0, 0)
@@ -48,6 +50,14 @@ function table.shallow_copy(t)
   return t2
 end
 
+function UpdateLateralLogoPositions()
+	RandomHeightPositions = table.shallow_copy(HeightPositions)
+	idx = math.random(1,#RandomHeightPositions)
+	sabakuLogoL.MoveTo(-Arena.width - 20,RandomHeightPositions[idx])
+	table.remove(RandomHeightPositions,idx)
+	sabakuLogoR.MoveTo(Arena.width + 20,RandomHeightPositions[math.random(1,#RandomHeightPositions)])
+end
+
 function Update()
 	if updateAngle == true then
 		angle =  math.deg(math.atan(Player.x/math.abs(Player.y-sabakuLogo.y)))
@@ -59,16 +69,15 @@ function Update()
 		playerResetPos = true
 	end
 	if spawntimer > 0 then
+		if spawntimer % 30 == 0 and lateralLogoSetup == true then
+			UpdateLateralLogoPositions()
+			lateralLogoSetup = false
+		end
 		if spawntimer % 90 == 0 then
 			updateAngle = false
 			Audio.PlaySound(FireIntro)
 			timerSpawnHelper = spawntimer
 			setupspawn = true
-			RandomHeightPositions = table.shallow_copy(HeightPositions)
-			idx = math.random(1,#RandomHeightPositions)
-			sabakuLogoL.MoveTo(-Arena.width - 20,RandomHeightPositions[idx])
-			table.remove(RandomHeightPositions,idx)
-			sabakuLogoR.MoveTo(Arena.width + 20,RandomHeightPositions[math.random(1,#RandomHeightPositions)])
 		elseif setupspawn == true and spawntimer > timerSpawnHelper + frameToSpawn	then
 			local xPos = 0
 			local yPos = sabakuLogo.y
@@ -77,6 +86,7 @@ function Update()
 			CreateBullet(sabakuLogoR.x, sabakuLogoR.y, -90)
 			Audio.PlaySound(FireSound)
 			setupspawn = false
+			lateralLogoReposition = false
 		end
 	end
 	
@@ -108,6 +118,10 @@ function Update()
 			updateAngle = true
 			currentBullet.Remove()
 			table.remove(bullets, i)
+			if lateralLogoReposition == false then
+				UpdateLateralLogoPositions()
+				lateralLogoReposition = true
+			end
 		end
 	end
 	

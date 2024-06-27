@@ -39,23 +39,29 @@ dialogPreLOREattack3 = {"LORE has differents aspects...", "...someone to wait an
 dialogPreCOINattack1 = {"My logo is a source of power"}
 dialogPreCOINattack2 = {"Double logo means double power"}
 dialogPreCOINattack3 = {"Different logos for a crazy power"}
-dialogPreBLASTattack = {"Maybe I should use an attack...","...that already make you pain"}
+dialogPreBLASTattack1 = {"Maybe I should use an attack...","...that already make you pain"}
+dialogPreBLASTattack2 = {"Double blast...","...means double you pain"}
+dialogPreBLASTattack3 = {"Blast festival!"}
 dialogPrePINGPONGattack1 = {"Here my RETRO attack!"}
 dialogPrePINGPONGattack2 = {"RETRO double attack!"}
 dialogPrePINGPONGattack3 = {"RETRO caos attack!"}
-dialogPreBOOMattack = {"This is the new version"}
-dialogPreFirstCOMBOattack = {"Wanna try a new combo attack?"}
+dialogPreBOOMattack1 = {"The logo power is explosive!"}
+dialogPreBOOMattack2 = {"Double logo for double fun!"}
+dialogPreBOOMattack3 = {"How about multiple color explosions!"}
+dialogPreCOMBOattackBoomPong = {"Mix balls with explosion is an excellent idea!"}
+dialogPreCOMBOattackBlastPong = {"How about blast and balls?", "Magnificent!"}
+dialogPreCOMBOattackBlastBoomPong = {"FINAL COMBO!"}
 -- dialog between attack phases
 -- (phase 1) 1->2 
 dialogChangePhase1AttackPhase12 = {"This was only the warm-up","Welcome to next level![noskip]","[func:State,ACTIONSELECT]"}
 -- (phase 1) 2->3
 dialogChangePhase1AttackPhase23 = {"..Not bad..","Ok, maybe a bit of understimation","Now is time for the true power","[func:State,ACTIONSELECT]"}
 -- (phase 2) 1->2 
-dialogChangePhase2AttackPhase12 = {"Ok kiddo, you need my full attention", "I need to [lettereffect:shake][color:ffffff]FOCUS","[func:State,ACTIONSELECT]"}
+dialogChangePhase2AttackPhase12 = {"Ok kiddo...","...you need my full attention", "I need to \n [lettereffect:shake][color:ffA500]FOCUS","[func:State,ACTIONSELECT]"}
 -- (phase 2) 2->3 
 dialogChangePhase2AttackPhase23 = {"How are you still alive?", "I will use my final form attacks!","[func:State,ACTIONSELECT]"}
 -- (phase 1) 3->combo 
-dialogChangePhase2AttackPhase3combo = {"How are you still here?", "I will use my final skill:","[lettereffect:shake][color:ffff00]ECCLETISM!","[func:State,ACTIONSELECT]"}
+dialogChangePhase2AttackPhase3combo = {"How are you still here?", "I will use my final skill:"," [lettereffect:shake][color:ffA500]E  [color:ffff00]C [color:ff0000]C [color:ff00ff]L [color:A5A500]E [color:00ff00]T [color:0000A5]I [color:00ffff]S [color:0000ff]M !","[func:State,ACTIONSELECT]"}
 -- end 
 dialogDefeat = {"I..?","How..?","Even with...?","...","I see...", "..so is this..", "your [lettereffect:shake][color:ffffff]DETERMINATION"}
 

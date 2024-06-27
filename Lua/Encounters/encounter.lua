@@ -65,17 +65,24 @@ function EnemyDialogueStarting()
 		elseif enemies[1].GetVar("battleSecondPhase") == true then
 			if attackCombo == false then
 				if indexAttack == 1 then
-					enemies[1].SetVar("currentdialogue", enemies[1].GetVar("dialogPreBOOMattack"))
+					enemies[1].SetVar("currentdialogue", enemies[1].GetVar("dialogPreBOOMattack" .. attacksPhase))
 				elseif indexAttack == 2 then
-					enemies[1].SetVar("currentdialogue", enemies[1].GetVar("dialogPreBLASTattack"))
-				else
-					enemies[1].SetVar("currentdialogue", enemies[1].GetVar(""))  -- random?
+					dialogbubble = "rightlong"
+					enemies[1].SetVar("currentdialogue", enemies[1].GetVar("dialogPreBLASTattack" .. attacksPhase))
+				--else
+					--enemies[1].SetVar("currentdialogue", enemies[1].GetVar(""))  -- random?
 				end
 			else
 				if indexAttack >= 1 and indexAttack <= #attacks_combo then
-					enemies[1].SetVar("currentdialogue", enemies[1].GetVar("dialogPreFirstCOMBOattack"))
+					if indexAttack == 1 then
+						enemies[1].SetVar("currentdialogue", enemies[1].GetVar("dialogPreCOMBOattackBoomPong"))
+					elseif indexAttack == 2 then
+						enemies[1].SetVar("currentdialogue", enemies[1].GetVar("dialogPreCOMBOattackBlastPong"))
+					elseif indexAttack == 3 then
+						enemies[1].SetVar("currentdialogue", enemies[1].GetVar("dialogPreCOMBOattackBlastBoomPong"))
+					end
 				else
-					enemies[1].SetVar("currentdialogue", enemies[1].GetVar(""))  -- random?
+					enemies[1].SetVar("currentdialogue", {"Wanna try a combo attack?"}) 
 				end
 			end
 		end
