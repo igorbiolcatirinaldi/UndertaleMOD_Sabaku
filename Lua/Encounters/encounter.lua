@@ -121,7 +121,7 @@ function EnemyDialogueEnding()
 		--Misc.ResizeWindow(Misc.WindowWidth * 1.5,Misc.WindowHeight * 1.5)
 	elseif nextwaves[1] == "logoblast" .. attacksPhase or nextwaves[1] == "logocoinboom" .. attacksPhase then
 		arenasize = {130,90}
-		wavetimer = 9.0
+		wavetimer = 10.0
 	elseif nextwaves[1] == "logopingpong" .. attacksPhase or nextwaves[1] == "lore" .. attacksPhase then
 		arenasize = {155, 130}
 		wavetimer = 12.0

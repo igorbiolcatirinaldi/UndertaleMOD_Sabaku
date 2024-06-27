@@ -8,7 +8,6 @@ bulletSpeed = 2
 explosionBulletLife = 30
 playerResetPos = false
 offsetX = 20
-positionsX = {0, -Arena.width + offsetX, Arena.width - offsetX}
 ageBullets = {60,90,120}
 colorsType = {"regular","cyan","orange"}
 colors = {{255/255,255/255,0/255},{0/255, 162/255, 232/255},{255/255, 154/255, 34/255}}
@@ -25,6 +24,7 @@ sabakuLogoC = CreateProjectile("SabakuLogoWSym", 0, Arena.height / 2 + 20)
 sabakuLogoC.sprite.xscale = 0.35
 sabakuLogoC.sprite.yscale = 0.35
 sabakuLogoC.sprite.color = colors[1]
+positionsX = {0, sabakuLogo1.x + offsetX + Player.x / 8, sabakuLogo2.x - offsetX + Player.x / 8}
 
 function SetBulletDirection(bullet)
 	differenceX = Player.x - bullet.x
@@ -71,7 +71,7 @@ function Update()
 		playerResetPos = true
 	end
 	if spawntimer % 120 == 0 then
-		local yPos = Arena.height - 20
+		local yPos = sabakuLogoC.y - 10
 		-- center
 		CreateBullet(positionsX[1],yPos,ageBullets[1],colors[1],colorsType[1])
 		-- left

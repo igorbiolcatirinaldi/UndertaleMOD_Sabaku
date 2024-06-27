@@ -60,9 +60,9 @@ function Update()
 		playerResetPos = true
 	end
 	if spawntimer % 120 == 0 then
-		local xPosLeft = -Arena.width + 20 + Player.x / 8
-		local xPosRight = Arena.width - 20 + Player.x / 8
-		local yPos = Arena.height - 20
+		local xPosLeft = sabakuLogo1.x - 10 + Player.x / 8
+		local xPosRight = sabakuLogo2.x + 10 + Player.x / 8
+		local yPos = sabakuLogo1.y - 10
 		CreateBullet(xPosLeft, yPos, bulletStartAttackAge1, "left")
 		CreateBullet(xPosRight, yPos, bulletStartAttackAge2, "right")
 	end
