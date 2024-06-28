@@ -48,7 +48,7 @@ dialogPrePINGPONGattack3 = {"RETRO caos attack!"}
 dialogPreBOOMattack1 = {"The logo power is explosive!"}
 dialogPreBOOMattack2 = {"Double logo for double fun!"}
 dialogPreBOOMattack3 = {"How about multiple color explosions!"}
-dialogPreCOMBOattackBoomPong = {"Mix balls with explosion is an excellent idea!"}
+dialogPreCOMBOattackBoomPong = {"Mix balls with explosion?", "Excellent idea!"}
 dialogPreCOMBOattackBlastPong = {"How about blast and balls?", "Magnificent!"}
 dialogPreCOMBOattackBlastBoomPong = {"FINAL COMBO!"}
 -- dialog between attack phases
@@ -200,6 +200,7 @@ function OnDeath()
 		Audio.Stop()
 		currentdialogue = dialogDefeat
 		dialogbubble = "rightlong"
+		Encounter.SetVar("changestepdialogue",true)
 		State("ENEMYDIALOGUE")
 	end
 end

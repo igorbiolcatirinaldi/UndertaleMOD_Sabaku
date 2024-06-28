@@ -6,10 +6,10 @@
 
 --- PING PONG
 timer = 0
-bulletL = CreateProjectile("Cube", -Arena.width-80,-30)
+bulletL = CreateProjectile("Cube", -Arena.width-80,-20)
 bulletL.sprite.alpha = 0
 bulletL.sprite.rotation = 35
-bulletR = CreateProjectile("Cube", Arena.width+80,30)
+bulletR = CreateProjectile("Cube", Arena.width+80,20)
 bulletR.sprite.alpha = 0
 bulletR.sprite.rotation = 15
 LogoL = CreateProjectile("pxSabakuLogoWSym2", -Arena.width-100,0)
@@ -64,9 +64,9 @@ end
 
 function UpdatebulletDirectionMovement(bullet,left)
 	if left == true then
-		bullet["velx"] = 4 --math.random(4,6)
+		bullet["velx"] = math.random(4,6)
 	else
-		bullet["velx"] = -1 * 4-- math.random(1,3)
+		bullet["velx"] = -1 * math.random(1,3)
 	end
 	if bullet.y > 0 then 
 		bullet["vely"] = math.random(-3,-2)
