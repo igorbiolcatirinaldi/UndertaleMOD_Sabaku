@@ -9,7 +9,7 @@ name = "Sabaku"
 hp = 100
 atk = 99
 def = 99
-check = "The strongest monster"
+check = "The strongest monster [w:30][func:State,ACTIONSELECT]"
 dialogbubble = "right" -- See documentation for what bubbles you have available.
 canspare = false
 cancheck = true
@@ -193,7 +193,7 @@ function OnDeath()
 		Encounter.SetVar("changestepdialogue",true)
 		currentdialogue = {"....","You!!","You are stronger than me?!", "I should aspected that", "But..","..I didn't imagine this end..","[noskip]...[w:45][next]","..no..","NO![func:HopeMusic]","There is one last thing!","One last HOPE!","I will use the power of the 6 human souls", "Asgore forgive me but it's necessary","...","[func:FightRestart]","Here my ULTIMATE form","[func:State,ACTIONSELECT]"}
 		dialogbubble = "rightlong"
-		check = "THE ULTIMATE..\n..MONSTER?"
+		check = "THE ULTIMATE..\n..MONSTER?[w:30][func:State,ACTIONSELECT]"
 		State("ENEMYDIALOGUE")
 	elseif battleSecondPhase == true then
 		-- REAL DEATH

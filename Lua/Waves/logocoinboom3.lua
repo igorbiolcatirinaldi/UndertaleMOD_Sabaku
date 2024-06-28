@@ -71,7 +71,7 @@ function Update()
 		playerResetPos = true
 	end
 	if spawntimer % 120 == 0 then
-		local yPos = sabakuLogoC.y - 10
+		local yPos = sabakuLogoC.y - 15
 		-- center
 		CreateBullet(positionsX[1],yPos,ageBullets[1],colors[1],colorsType[1])
 		-- left

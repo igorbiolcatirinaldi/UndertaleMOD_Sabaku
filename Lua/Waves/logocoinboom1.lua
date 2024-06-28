@@ -51,7 +51,7 @@ function Update()
 	end
 	if spawntimer % 120 == 0 then
 		local xPos = Player.x / 8
-		local yPos = Arena.height - 10
+		local yPos = sabakuLogo.y - 15
 		CreateBullet(xPos, yPos)
 	end
 	
