@@ -13,13 +13,15 @@ check = "The strongest monster [w:30][func:State,ACTIONSELECT]"
 dialogbubble = "right" -- See documentation for what bubbles you have available.
 canspare = false
 cancheck = true
-currentdialogue = {"Welcome back"}
+currentdialogue = {"Welcome back","[func:State,ACTIONSELECT]"}
 -- Intro
 countParryBeforeStartBattle = 0
 introPhase = true
 defensemisstext = "PARRY"
 parry = false
 parrySprite = CreateSprite("parry0","Top")
+commentparry = false
+parrydialogue = {}
 -- Battle
 battleFirstPhase = false
 battleSecondPhase = false
@@ -29,7 +31,7 @@ decreasingParryAccuracyValue = 0.1
 playerAttackIndexDialogue = 1
 
 -- DIALOG
-dialogueAfterBeingHit = {"..So you find an opening to hit AH?","..Well well..","There is no satisfaction to break down a weak"}
+dialogueAfterBeingHit = {{"..So you find an opening to hit AH?"},{"..Well well.."},{"There is no satisfaction to break down a weak"}}
 dialoguePersuasion = {"Please do not make me doing this","I know it's hard...","...but you are still in time"}
 dialogueRandomBattleAttacks = {}
 -- dialog pre attacks:
@@ -57,11 +59,11 @@ dialogChangePhase1AttackPhase12 = {"This was only the warm-up","Welcome to next 
 -- (phase 1) 2->3
 dialogChangePhase1AttackPhase23 = {"..Not bad..","Ok, maybe a bit of understimation","Now is time for the true power","[func:State,ACTIONSELECT]"}
 -- (phase 2) 1->2 
-dialogChangePhase2AttackPhase12 = {"Ok kiddo...","...you need my full attention", "I need to \n [lettereffect:shake][color:ffA500]FOCUS","[func:State,ACTIONSELECT]"}
+dialogChangePhase2AttackPhase12 = {"Ok kiddo...","...you need my full attention", "I need to \n [lettereffect:shake][color:fca600]FOCUS","[func:State,ACTIONSELECT]"}
 -- (phase 2) 2->3 
 dialogChangePhase2AttackPhase23 = {"How are you still alive?", "I will use my final form attacks!","[func:State,ACTIONSELECT]"}
 -- (phase 1) 3->combo 
-dialogChangePhase2AttackPhase3combo = {"How are you still here?", "I will use my final skill:"," [lettereffect:shake][color:ffA500]E  [color:ffff00]C [color:ff0000]C [color:ff00ff]L [color:A5A500]E [color:00ff00]T [color:0000A5]I [color:00ffff]S [color:0000ff]M !","[func:State,ACTIONSELECT]"}
+dialogChangePhase2AttackPhase3combo = {"How are you still here?", "I will use my final skill:"," [lettereffect:shake][lettereffect:twitch][color:ffA500]E  [color:ffff00]C [color:ff0000]C [color:ff00ff]L [color:A5A500]E [color:00ff00]T [color:0000A5]I [color:00ffff]S [color:0000ff]M !","[func:State,ACTIONSELECT]"}
 -- end 
 dialogDefeat = {"I..?","How..?","Even with...?","...","I see...", "..so is this..", "your [lettereffect:shake][color:ffffff]DETERMINATION"}
 
@@ -81,12 +83,13 @@ end
 function Parry(dialogue,box)
 	Audio.PlaySound("DS2parry",0.8)
 	SetDamage(0)
-	currentdialogue = dialogue
+	parrydialogue = dialogue
 	dialogbubble = box
 end
 
 function ParryStartAnimation()
 	parry = true
+	commentparry = true
 	parrySprite = CreateSprite("parry0","Top")
 	parrySprite.y = 300
 	parrySprite.SetAnimation({"parry0","parry1","parry2","parry3","parry4","parry5"},1/6)
@@ -101,12 +104,11 @@ function BeforeDamageCalculation()
 			Parry({"Please...","You have to stop all of this!","All these murders out of curiosity","The frenzy to discover new [lettereffect:?]CHALLENGE and [lettereffect:?]CONTENTS","Just like me..."}, "rightwide")
 			countParryBeforeStartBattle = countParryBeforeStartBattle + 1
 		elseif countParryBeforeStartBattle == 2 then
-			Parry({"How far would you go?", "Will you ever stop?", "You really think that all this is worthed?","Please..","..Even you..","should have a [lettereffect:shake][color:ff0000]HEART [lettereffect:none][color:000000]under that [lettereffect:shake][color:ffffff]SOUL"},"rightwide")
+			Parry({"How far would you go?", "Will you ever stop?", "You really think that all this is worthed?","Please..","..Even you..","should have a [lettereffect:shake][color:ff0000]HEART [lettereffect:none][color:000000]under that [lettereffect:shake][color:000000]SOUL"},"rightwide")
 			countParryBeforeStartBattle = countParryBeforeStartBattle + 1
 		elseif countParryBeforeStartBattle == 3 then
 			Parry({"Well...","As excepected..","..talk with you is meaningless","You'll change idea with THIS FIGHT"},"rightwide")
 			introPhase = false
-			Encounter.SetVar("wavetimer",10.0)
 			battleFirstPhase = true
 		end
 		
@@ -117,7 +119,7 @@ function BeforeDamageCalculation()
 		if Player.lasthitmultiplier == -1 then
 			-- miss
 			defensemisstext = "MISS"
-			currentdialogue = {"PATHETIC"}
+			parrydialogue = {"PATHETIC"}
 		elseif Player.lasthitmultiplier < 2.2 - decreasingParryAccuracyValue * countAttacksFirstPhase then
 			-- parry
 			Parry({"NOT ENOUGH"},"right")
@@ -125,9 +127,10 @@ function BeforeDamageCalculation()
 		else
 			-- attack hit
 			if(playerAttackIndexDialogue <= 3) then
-				currentdialogue = dialogueAfterBeingHit[playerAttackIndexDialogue]
+				parrydialogue = dialogueAfterBeingHit[playerAttackIndexDialogue]
 				dialogbubble = "rightwide"
 				playerAttackIndexDialogue = playerAttackIndexDialogue + 1
+				commentparry = true
 			end
 		end
 		if(countAttacksFirstPhase < 22) then
@@ -139,7 +142,7 @@ function BeforeDamageCalculation()
 		if Player.lasthitmultiplier == -1 then
 			-- miss
 			defensemisstext = "ROLL"
-			currentdialogue = {"SEMPER FIGHT"}
+			parrydialogue = {"SEMPER FIGHT"}
 			if(countAttacksHitSecondPhase > 0) then
 				countAttacksHitSecondPhase = countAttacksHitSecondPhase - 1
 			end
@@ -167,6 +170,7 @@ end
 
 function HopeMusic()
 	Audio.LoadFile(Undyingtheme)
+	Audio.Volume(0.5)
 end
 
 function ChangeSabakuSprite()
@@ -179,6 +183,7 @@ function FightRestart()
 	ChangeSabakuSprite()
 	hp = 100
 	Audio.LoadFile(Encounter["music"])
+	Audio.Volume(0.8)
 end
 
 function OnDeath()
@@ -191,7 +196,7 @@ function OnDeath()
 		Encounter.SetVar("stepphase1",false)
 		Encounter.SetVar("stepphase2",false)
 		Encounter.SetVar("changestepdialogue",true)
-		currentdialogue = {"....","You!!","You are stronger than me?!", "I should aspected that", "But..","..I didn't imagine this end..","[noskip]...[w:45][next]","..no..","NO![func:HopeMusic]","There is one last thing!","One last HOPE!","I will use the power of the 6 human souls", "Asgore forgive me but it's necessary","...","[func:FightRestart]","Here my ULTIMATE form","[func:State,ACTIONSELECT]"}
+		currentdialogue = {"....","You!!","You are stronger than me?!", "I should aspected that", "But..","..I didn't imagine this end..","[noskip]...[w:45][next]","..no..","NO![func:HopeMusic]","There is one last thing!","One last [lettereffect:shake]HOPE!","I will use the power of the 6 human souls", "Asgore forgive me but it's necessary","...","[func:FightRestart]","Here my ULTIMATE form","[func:State,ACTIONSELECT]"}
 		dialogbubble = "rightlong"
 		check = "THE ULTIMATE..\n..MONSTER?[w:30][func:State,ACTIONSELECT]"
 		State("ENEMYDIALOGUE")

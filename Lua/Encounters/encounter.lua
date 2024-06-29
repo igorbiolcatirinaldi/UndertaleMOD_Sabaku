@@ -44,6 +44,7 @@ function EncounterStarting()
 	-- Add items
 	Inventory.AddCustomItems({"Cinnamon Pie","Hush Puppy","Snowman Piece","Hot Dog"},{0,0,0,0})
 	Inventory.SetInventory({"Cinnamon Pie","Hush Puppy","Snowman Piece","Hot Dog"})
+	State("ENEMYDIALOGUE")
 end
 
 function EnemyDialogueStarting()
@@ -86,6 +87,12 @@ function EnemyDialogueStarting()
 				end
 			end
 		end
+		
+		if enemies[1].GetVar("introPhase") == false and enemies[1].GetVar("commentparry") == true then
+			tempdialogue = enemies[1].GetVar("currentdialogue")
+			table.insert(tempdialogue,1,enemies[1].GetVar("parrydialogue")[1])
+			enemies[1].SetVar("currentdialogue", tempdialogue)
+		end
 	end	
 end
 
@@ -114,17 +121,28 @@ function EnemyDialogueEnding()
 		end
 	end
 	
-	if nextwaves[1] == "logocombo_pingpongboomblast" or nextwaves[1] == "logocombo_pingpongboom" or 
+	if nextwaves[1] == "logocoin1" or nextwaves[1] == "lore1" or nextwaves[1] == "logoblast1" or nextwaves[1] == "logocoinboom1" then
+		wavetimer = 6.0
+	elseif nextwaves[1] == "logocombo_pingpongboomblast" or nextwaves[1] == "logocombo_pingpongboom" or 
 		nextwaves[1] == "logocombo_pingpongblast" or nextwaves[1] == "logocoin" .. attacksPhase then
-		arenasize = {125,85}
 		wavetimer = 8.0
 		--Misc.ResizeWindow(Misc.WindowWidth * 1.5,Misc.WindowHeight * 1.5)
 	elseif nextwaves[1] == "logoblast" .. attacksPhase or nextwaves[1] == "logocoinboom" .. attacksPhase then
-		arenasize = {130,90}
 		wavetimer = 10.0
 	elseif nextwaves[1] == "logopingpong" .. attacksPhase or nextwaves[1] == "lore" .. attacksPhase then
-		arenasize = {155, 130}
 		wavetimer = 12.0
+	end
+	
+	-- Arena
+	if nextwaves[1] == "logocombo_pingpongboomblast" or nextwaves[1] == "logocombo_pingpongboom" or 
+		nextwaves[1] == "logocombo_pingpongblast" or nextwaves[1] == "logocoin1" or nextwaves[1] == "logocoinboom1" then
+		arenasize = {125,85}
+		--Misc.ResizeWindow(Misc.WindowWidth * 1.5,Misc.WindowHeight * 1.5)
+	elseif nextwaves[1] == "logoblast" .. attacksPhase or nextwaves[1] == "logocoin" .. attacksPhase 
+		or nextwaves[1] == "logocoinboom" .. attacksPhase then
+		arenasize = {130,90}
+	elseif nextwaves[1] == "logopingpong" .. attacksPhase or nextwaves[1] == "lore" .. attacksPhase then
+		arenasize = {155, 130}
 	end
 end
 

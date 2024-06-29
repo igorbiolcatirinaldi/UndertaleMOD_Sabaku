@@ -54,10 +54,10 @@ end
 function Update()
 	
 	if timer > 45 and bulletSpawn == false then
-		CreateBullet(-Arena.width-80,-30,35,math.random(4,6),2,{255/255, 255/255, 255/255},"regular")
-		CreateBullet(Arena.width+80,30,15,-math.random(4,6),2,{255/255, 255/255, 255/255},"regular")
-		CreateBullet(Arena.width+80,-30,5,-math.random(4,6),3,{255/255, 154/255, 34/255},"orange")
-		CreateBullet(-Arena.width-80,30,25,math.random(4,6),3,{0/255, 162/255, 232/255},"cyan")
+		CreateBullet(-Arena.width-70,-30,35,math.random(4,6),2,{255/255, 255/255, 255/255},"regular")
+		CreateBullet(Arena.width+70,30,15,-math.random(4,6),2,{255/255, 255/255, 255/255},"regular")
+		CreateBullet(Arena.width+70,-30,5,-math.random(4,6),3,{255/255, 154/255, 34/255},"orange")
+		CreateBullet(-Arena.width-70,30,25,math.random(4,6),3,{0/255, 162/255, 232/255},"cyan")
 		bulletSpawn = true
 	end	
 	

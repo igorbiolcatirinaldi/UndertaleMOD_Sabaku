@@ -4,10 +4,10 @@
 
 --- PING PONG
 timer = 0
-bulletL = CreateProjectile("Cube", -Arena.width-80,-20)
+bulletL = CreateProjectile("Cube", -Arena.width-70,-20)
 bulletL.sprite.alpha = 0
 bulletL.sprite.rotation = 35
-bulletR = CreateProjectile("Cube", Arena.width+80,20)
+bulletR = CreateProjectile("Cube", Arena.width+70,20)
 bulletR.sprite.alpha = 0
 bulletR.sprite.rotation = 15
 LogoL = CreateProjectile("pxSabakuLogoWSym2", -Arena.width-100,0)

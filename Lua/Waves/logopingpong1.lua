@@ -1,7 +1,7 @@
 -- SabakuLogo Sprite spawn at right/left border and try hitting with a cube like ping pong
 
 timer = 0
-bullet = CreateProjectile("Cube", -Arena.width-75,0)
+bullet = CreateProjectile("Cube", -Arena.width-65,0)
 bullet.sprite.alpha = 0
 bullet.sprite.rotation = 35
 bulletSpeedX = 4.5
