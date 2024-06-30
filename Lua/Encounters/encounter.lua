@@ -90,8 +90,12 @@ function EnemyDialogueStarting()
 		
 		if enemies[1].GetVar("introPhase") == false and enemies[1].GetVar("commentparry") == true then
 			tempdialogue = enemies[1].GetVar("currentdialogue")
+			if tempdialogue == nil then
+				tempdialogue = enemies[1].GetVar("randomdialogue")
+			end
 			table.insert(tempdialogue,1,enemies[1].GetVar("parrydialogue")[1])
 			enemies[1].SetVar("currentdialogue", tempdialogue)
+			enemies[1].SetVar("commentparry", false)
 		end
 	end	
 end
@@ -126,7 +130,6 @@ function EnemyDialogueEnding()
 	elseif nextwaves[1] == "logocombo_pingpongboomblast" or nextwaves[1] == "logocombo_pingpongboom" or 
 		nextwaves[1] == "logocombo_pingpongblast" or nextwaves[1] == "logocoin" .. attacksPhase then
 		wavetimer = 8.0
-		--Misc.ResizeWindow(Misc.WindowWidth * 1.5,Misc.WindowHeight * 1.5)
 	elseif nextwaves[1] == "logoblast" .. attacksPhase or nextwaves[1] == "logocoinboom" .. attacksPhase then
 		wavetimer = 10.0
 	elseif nextwaves[1] == "logopingpong" .. attacksPhase or nextwaves[1] == "lore" .. attacksPhase then

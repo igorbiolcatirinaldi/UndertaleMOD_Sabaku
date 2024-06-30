@@ -64,7 +64,7 @@ dialogChangePhase2AttackPhase12 = {"Ok kiddo...","...you need my full attention"
 -- (phase 2) 2->3 
 dialogChangePhase2AttackPhase23 = {"How are you still alive?", "I will use my final form attacks!","[func:State,ACTIONSELECT]"}
 -- (phase 1) 3->combo 
-dialogChangePhase2AttackPhase3combo = {"How are you still here?", "I will use my final skill:"," [lettereffect:shake][lettereffect:twitch][color:ffA500]E  [color:ffff00]C [color:ff0000]C [color:ff00ff]L [color:A5A500]E [color:00ff00]T [color:0000A5]I [color:00ffff]S [color:0000ff]M !","[func:State,ACTIONSELECT]"}
+dialogChangePhase2AttackPhase3combo = {"How are you still here?", "I will use my final skill:","[lettereffect:shake] [color:ffA500]E  [color:ffff00]C [color:ff0000]C [color:ff00ff]L [color:A5A500]E [color:00ff00]T [color:0000A5]I [color:00ffff]S [color:0000ff]M [color:000000]!","[func:State,ACTIONSELECT]"}
 -- end 
 dialogDefeat = {"I..?","How..?","Even with...?","...","I see...", "..so is this your..", " [voice:uifont][lettereffect:shake][linespacing:-4] [w:10]D\n     [w:10]E\n  [w:10]T\n     [w:10]E\n  [w:10]R\n     [w:10]M\n  [w:10]I\n     [w:10]N\n  [w:10]A\n     [w:10]T\n  [w:10]I\n     [w:10]O\n  [w:10]N","[func:Death]"}
 
@@ -84,13 +84,16 @@ end
 function Parry(dialogue,box)
 	Audio.PlaySound("DS2parry",0.8)
 	SetDamage(0)
-	parrydialogue = dialogue
+	if introPhase == true then
+		currentdialogue = dialogue
+	else
+		parrydialogue = dialogue
+	end
 	dialogbubble = box
 end
 
 function ParryStartAnimation()
 	parry = true
-	commentparry = true
 	parrySprite = CreateSprite("parry0","Top")
 	parrySprite.y = 300
 	parrySprite.SetAnimation({"parry0","parry1","parry2","parry3","parry4","parry5"},1/6)
@@ -102,14 +105,15 @@ function BeforeDamageCalculation()
 			Parry({"Surprise?","Do you really think...","...I wasn't able to use my power?","Yes I can","Even HERE I can [instant][lettereffect:shake][color:ff0000]PARRY!"},"right")
 			countParryBeforeStartBattle = countParryBeforeStartBattle + 1
 		elseif countParryBeforeStartBattle == 1 then
-			Parry({"Please...","You have to stop all of this!","All these murders out of curiosity","The frenzy to discover new [lettereffect:?]CHALLENGE and [lettereffect:?]CONTENTS","Just like me..."}, "rightwide")
+			Parry({"Please...","You have to stop all of this!","All these murders out of curiosity","The frenzy to discover new CHALLENGE and CONTENTS[w:40][next]","...Just like me..."}, "rightwide")
 			countParryBeforeStartBattle = countParryBeforeStartBattle + 1
 		elseif countParryBeforeStartBattle == 2 then
-			Parry({"How far would you go?", "Will you ever stop?", "You really think that all this is worthed?","Please..","..Even you..","should have a [lettereffect:shake][color:ff0000]HEART [lettereffect:none][color:000000]under that [lettereffect:shake][color:000000]SOUL"},"rightwide")
+			Parry({"How far would you go?", "Will you ever stop?", "You really think that all this is worthed?","Please..","..Even you..","should have a [lettereffect:shake][color:ff0000]HEART [lettereffect:none][color:000000]under that [lettereffect:shake]SOUL"},"rightwide")
 			countParryBeforeStartBattle = countParryBeforeStartBattle + 1
 		elseif countParryBeforeStartBattle == 3 then
 			Parry({"Well...","As excepected..","..talk with you is meaningless","You'll change idea with THIS FIGHT"},"rightwide")
 			introPhase = false
+			Encounter.SetVar("wavetimer",10.0)
 			battleFirstPhase = true
 		end
 		
@@ -125,6 +129,7 @@ function BeforeDamageCalculation()
 			-- parry
 			Parry({"NOT ENOUGH"},"right")
 			ParryStartAnimation()
+			commentparry = true
 		else
 			-- attack hit
 			if(playerAttackIndexDialogue <= 3) then
@@ -151,6 +156,7 @@ function BeforeDamageCalculation()
 			-- parry
 			Parry({"I'M A PARRY MASTER"},"right")
 			ParryStartAnimation()
+			commentparry = true
 		else
 			-- attack hit
 			if(countAttacksHitSecondPhase < 22) then
