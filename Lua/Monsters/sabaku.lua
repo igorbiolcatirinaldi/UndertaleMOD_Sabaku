@@ -7,6 +7,7 @@ sprite = "SabakuSprite" --Always PNG. Extension is added automatically.
 spritePhase2 = "SabakuSprite2"
 name = "Sabaku"
 hp = 100
+xp = 1000000
 atk = 99
 def = 99
 check = "The strongest monster [w:30][func:State,ACTIONSELECT]"
@@ -65,7 +66,7 @@ dialogChangePhase2AttackPhase23 = {"How are you still alive?", "I will use my fi
 -- (phase 1) 3->combo 
 dialogChangePhase2AttackPhase3combo = {"How are you still here?", "I will use my final skill:"," [lettereffect:shake][lettereffect:twitch][color:ffA500]E  [color:ffff00]C [color:ff0000]C [color:ff00ff]L [color:A5A500]E [color:00ff00]T [color:0000A5]I [color:00ffff]S [color:0000ff]M !","[func:State,ACTIONSELECT]"}
 -- end 
-dialogDefeat = {"I..?","How..?","Even with...?","...","I see...", "..so is this..", "your [lettereffect:shake][color:ffffff]DETERMINATION"}
+dialogDefeat = {"I..?","How..?","Even with...?","...","I see...", "..so is this your..", " [voice:uifont][lettereffect:shake][linespacing:-4] [w:10]D\n     [w:10]E\n  [w:10]T\n     [w:10]E\n  [w:10]R\n     [w:10]M\n  [w:10]I\n     [w:10]N\n  [w:10]A\n     [w:10]T\n  [w:10]I\n     [w:10]O\n  [w:10]N","[func:Death]"}
 
 -- Happens after the slash animation and BeforeDamageCalculation 
 function HandleAttack(attackstatus)
@@ -210,5 +211,8 @@ function OnDeath()
 	end
 end
 
+function Death()
+	Kill()
+end
 
 
