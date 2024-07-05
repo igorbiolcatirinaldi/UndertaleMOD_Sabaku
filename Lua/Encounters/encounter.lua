@@ -35,15 +35,17 @@ function EncounterStarting()
 	Player.lv = 20
 	Player.hp = 99
 	Player.atk = 101
-	Player.def = 99
+	Player.def = 96
 	Player.name = "P"
 	--DEBUG("weapon" .. Player.weapon)
 	--DEBUG("weapon atk" .. Player.weaponatk)
 	enemies[1].GetVar("parrySprite").Remove()
 	enemies[1].Call("BindToArena",false)
 	-- Add items
-	Inventory.AddCustomItems({"Cinnamon Pie","Hush Puppy","Snowman Piece","Hot Dog"},{0,0,0,0})
-	Inventory.SetInventory({"Cinnamon Pie","Hush Puppy","Snowman Piece","Hot Dog"})
+	--Inventory.AddCustomItems({"Cinnamon Pie","Hush Puppy","Snowman Piece","Hot Dog"},{0,0,0,0})
+	Inventory.AddCustomItems({"Cinnamon Pie","Hot Dog"},{0,0})
+	--Inventory.SetInventory({"Cinnamon Pie","Hush Puppy","Snowman Piece","Hot Dog"})
+	Inventory.SetInventory({"Cinnamon Pie","Hot Dog"})
 	State("ENEMYDIALOGUE")
 end
 
@@ -203,10 +205,11 @@ function HandleItem(ItemID)
     BattleDialog({"Selected item " .. ItemID .. "."})
 	if ItemID == "CINNAMON PIE" then
 		Player.Heal(100)
-	elseif ItemID == "HUSH PUPPY" then
+	--[[elseif ItemID == "HUSH PUPPY" then
 		Player.Heal(65)
 	elseif ItemID == "SNOWMAN PIECE" then
 		Player.Heal(45)
+	]]--
 	elseif ItemID == "HOT DOG" then
 		Player.Heal(20)
 	end
