@@ -46,11 +46,11 @@ dialogPreBLASTattack1 = {"Maybe I should use an attack...","...that already make
 dialogPreBLASTattack2 = {"Double blast...","...means double you pain"}
 dialogPreBLASTattack3 = {"Blast festival!"}
 dialogPrePINGPONGattack1 = {"Here my RETRO attack!"}
-dialogPrePINGPONGattack2 = {"RETRO double attack!"}
-dialogPrePINGPONGattack3 = {"RETRO caos attack!"}
+dialogPrePINGPONGattack2 = {"Double RETRO attack!"}
+dialogPrePINGPONGattack3 = {"Caos RETRO attack!"}
 dialogPreBOOMattack1 = {"The logo power is explosive!"}
 dialogPreBOOMattack2 = {"Double logo for double fun!"}
-dialogPreBOOMattack3 = {"How about multiple color explosions!"}
+dialogPreBOOMattack3 = {"Multiple color explosions!"}
 dialogPreCOMBOattackBoomPong = {"Mix balls with explosion?", "Excellent idea!"}
 dialogPreCOMBOattackBlastPong = {"How about blast and balls?", "Magnificent!"}
 dialogPreCOMBOattackBlastBoomPong = {"FINAL COMBO!"}
@@ -58,9 +58,9 @@ dialogPreCOMBOattackBlastBoomPong = {"FINAL COMBO!"}
 -- (phase 1) 1->2 
 dialogChangePhase1AttackPhase12 = {"This was only the warm-up","Welcome to next level![noskip]","[func:State,ACTIONSELECT]"}
 -- (phase 1) 2->3
-dialogChangePhase1AttackPhase23 = {"..Not bad..","Ok, maybe a bit of understimation","Now is time for the true power","[func:State,ACTIONSELECT]"}
+dialogChangePhase1AttackPhase23 = {"..Not bad..","Ok, maybe I understimate you a bit","But now is time for the true power","[func:State,ACTIONSELECT]"}
 -- (phase 2) 1->2 
-dialogChangePhase2AttackPhase12 = {"Ok kiddo...","...you need my full attention", "I need to \n [lettereffect:shake][color:fca600]FOCUS","[func:State,ACTIONSELECT]"}
+dialogChangePhase2AttackPhase12 = {"Ok kiddo...","...you need my full attention!", "I need to \n [lettereffect:shake][color:fca600]FOCUS","[func:State,ACTIONSELECT]"}
 -- (phase 2) 2->3 
 dialogChangePhase2AttackPhase23 = {"How are you still alive?", "I will use my final form attacks!","[func:State,ACTIONSELECT]"}
 -- (phase 1) 3->combo 
