@@ -1,7 +1,7 @@
 -- A basic monster script skeleton you can copy and modify for your own creations.
 comments = {}
 commands = {}
-randomdialogue = {"SEMPER FIGHT!"}
+randomdialogue = {"SEMPER FI"}
 Undyingtheme = "Undertale_But_Refused_to_Die"
 sprite = "SabakuSprite" --Always PNG. Extension is added automatically.
 spritePhase2 = "SabakuSprite2"
@@ -148,7 +148,7 @@ function BeforeDamageCalculation()
 		if Player.lasthitmultiplier == -1 then
 			-- miss
 			defensemisstext = "ROLL"
-			parrydialogue = {"SEMPER FIGHT"}
+			parrydialogue = {"SEMPER FI"}
 			if(countAttacksHitSecondPhase > 0) then
 				countAttacksHitSecondPhase = countAttacksHitSecondPhase - 1
 			end
