@@ -29,7 +29,7 @@ function UpdatebulletDirectionMovement(bullet,left)
 		bullet["velx"] = -1 * 5--math.random(5,6)
 	end
 	if bullet.y > 0 then 
-		bullet["vely"] = math.random(-3,-2)
+		bullet["vely"] = -math.random(2,3)
 	else
 		bullet["vely"] = math.random(2,3)
 	end

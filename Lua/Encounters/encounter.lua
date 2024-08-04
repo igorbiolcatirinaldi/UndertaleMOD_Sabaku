@@ -140,11 +140,10 @@ function EnemyDialogueEnding()
 	
 	-- Arena
 	if nextwaves[1] == "logocombo_pingpongboomblast" or nextwaves[1] == "logocombo_pingpongboom" or 
-		nextwaves[1] == "logocombo_pingpongblast" or nextwaves[1] == "logocoin1" or nextwaves[1] == "logocoinboom1" then
+		nextwaves[1] == "logocombo_pingpongblast" or nextwaves[1] == "logocoin" .. attacksPhase or nextwaves[1] == "logocoinboom1" then
 		arenasize = {125,85}
 		--Misc.ResizeWindow(Misc.WindowWidth * 1.5,Misc.WindowHeight * 1.5)
-	elseif nextwaves[1] == "logoblast" .. attacksPhase or nextwaves[1] == "logocoin" .. attacksPhase 
-		or nextwaves[1] == "logocoinboom" .. attacksPhase then
+	elseif nextwaves[1] == "logoblast" .. attacksPhase or nextwaves[1] == "logocoinboom" .. attacksPhase then
 		arenasize = {130,90}
 	elseif nextwaves[1] == "logopingpong" .. attacksPhase or nextwaves[1] == "lore" .. attacksPhase then
 		arenasize = {155, 130}
