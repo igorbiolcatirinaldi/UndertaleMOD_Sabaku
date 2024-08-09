@@ -34,6 +34,11 @@ function UpdatebulletDirectionMovement(bullet,left)
 		bullet["vely"] = math.random(2,3)
 	end
 	RandombulletOrientation(bullet)
+	if bullet.y > Arena.height/2 then
+		bullet.y = Arena.height/2 - 1
+	elseif bullet.y < -Arena.height/2 then
+		bullet.y = -Arena.height/2 + 1
+	end
 end
 
 function bulletBounce(bullet)
